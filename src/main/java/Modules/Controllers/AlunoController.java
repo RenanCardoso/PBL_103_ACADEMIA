@@ -24,6 +24,7 @@ public class AlunoController {
         for (Aluno aluno : data){
             System.out.println("Id: " + aluno.getId());
             System.out.println("Nome: " + aluno.getName());
+
         }
     }
 
