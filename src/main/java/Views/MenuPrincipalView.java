@@ -1,6 +1,6 @@
 package Views;
 
-import Modules.Controllers.MenuPrincipalController;
+import Modules.Controllers.Routes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class MenuPrincipalView {
 
 //        crio o meu JFrame
         mainFrame = new JFrame("Sistema Academia");
-        mainFrame.setBounds(100, 100, 450, 250);
+        mainFrame.setBounds(100, 100, 750, 550);
 //        e coloco a operação de fechar padrão no botão x
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLayout(new FlowLayout(0));
@@ -36,7 +36,7 @@ public class MenuPrincipalView {
         mainFrame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnAcao.addActionListener(new MenuPrincipalController(btnAcao)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new Routes(btnAcao, mainFrame)); //a partir daqui a Controller passará a assumir
 
         mainFrame.setVisible(true);
     }

@@ -1,4 +1,4 @@
-import Views.ViewAluno;
+import Views.ViewAlunoOld;
 import java.sql.SQLException;
 import java.util.Scanner;
 public class App {
@@ -15,7 +15,7 @@ public class App {
             switch (escolha) {
                 case 1:
                     System.out.println("Opção 1 selecionada");
-                    ViewAluno.verTelaAluno();
+                    ViewAlunoOld.verTelaAlunoOld();
                     break;
 
                 case 2:

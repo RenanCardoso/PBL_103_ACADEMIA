@@ -8,6 +8,8 @@ package Database;/*toda vez que eu quiser trabalhar com alguma coisa relacionada
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class ConnectionFactory {
 
@@ -39,5 +41,24 @@ public class ConnectionFactory {
 
     public Connection getConnection(){
         return createConnection();
+    }
+
+    public static void fechaConexao(Connection conn, PreparedStatement stmt, ResultSet rs) {
+
+        try {
+            if (conn != null || stmt != null) {
+                fechaConexao(conn, stmt);
+            }
+            if (rs != null) {
+                rs.close();
+                System.out.println("ResultSet fechado com sucesso");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Não foi possível fechar o ResultSet " + e.getMessage());
+        }
+    }
+
+    private static void fechaConexao(Connection conn, PreparedStatement stmt) {
     }
 }

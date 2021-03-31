@@ -120,7 +120,7 @@ public class AlunoDAO {
 
 
         //no lugar da interrogação eu vou passar os dados de forma dinâmica em runtime, para fazer isso:
-        statement.setString(1, aluno.getName()); //capturo através do meu getName
+        statement.setString(1, aluno.getNome()); //capturo através do meu getName
         /* passei o index que está localizado, ou seja, a onde eu desejo inserir, no meu caso só tenho uma
          * interrogação então eu sei que é na minha primeira posição e o que eu desejo inserir
          */
@@ -148,7 +148,7 @@ public class AlunoDAO {
         statement = connection.prepareStatement(query);
 
         //seto meus valores
-        statement.setString(1, alunoNew.getName());
+        statement.setString(1, alunoNew.getNome());
         statement.setInt(2, alunoNew.getId());
         statement.execute();
     }

@@ -17,9 +17,7 @@ public class menuPrincipal {
             switch (escolha) {
                 case 1:
                     System.out.println("Opção 1 selecionada");
-                    ViewAluno.verTelaAluno();
-                    break;
-
+                    ViewAlunoOld.verTelaAlunoOld();
                 case 2:
                     System.out.println("Você inseriu o valor 2, o programa será encerrado.");
                     System.exit(0);

@@ -4,7 +4,7 @@ import Modules.Controllers.AlunoController;
 public class Aluno extends AlunoController {
 
     private Integer id;
-    private String name;
+    private String nome;
 
     /* uma model é basicamente o espelho do nosso banco de dados. Basicamente cada instância que eu
      * criar da minha Models.Aluno vai ser um novo registro que vou gerar dentro do meu banco de dados na tabela movie
@@ -13,13 +13,13 @@ public class Aluno extends AlunoController {
     //construtor
     public Aluno(){}
 
-    public Aluno(String name){
-        this.name = name;
+    public Aluno(String nome){
+        this.nome = nome;
     }
 
-    public Aluno(Integer id, String name){
+    public Aluno(Integer id, String nome){
         this.id = id;
-        this.name = name;
+        this.nome = nome;
     }
 
     public Integer getId() {
@@ -30,11 +30,11 @@ public class Aluno extends AlunoController {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String nome) {
+        this.nome = nome;
     }
 }

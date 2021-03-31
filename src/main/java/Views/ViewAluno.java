@@ -1,122 +1,85 @@
 package Views;
 
-import Database.ConnectionFactory;
 import Models.Aluno;
 import Modules.Controllers.AlunoController;
+import Modules.Controllers.Routes;
 
 import javax.swing.*;
-import java.sql.Connection;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ViewAluno {
 
+    //    defino os componentes que serão utilizados
+    private static JFrame frame;
+    private static JPanel panel;
+    private static JButton btnAdicionar;
+    private static JButton btnAlterar;
+    private static JButton btnRemover;
+    private static JButton btnAcao;
+    private static JTable tabela;
+    private static DefaultTableModel modelo = new DefaultTableModel();
 
-    public ViewAluno() throws SQLException {
-        verTelaAluno();
-    }
+        public ViewAluno() throws SQLException {
+            verTelaAluno();
+        }
 
     public static void verTelaAluno() throws SQLException {
 
-        //crio uma instância scanner para poder ler o que o usuário digita
-        Scanner scanner = new Scanner(System.in); //System.in serve para capturar os inputs(o que ele digita)
+        //        crio o meu Jframe
+        frame = new JFrame("Alunos");
+        frame.setBounds(100, 100, 750, 550);
+//        e coloco a operação de fechar padrão no botão x
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout(0));
 
-        //crio uma instância cliController para chamar meus metodos da classe AlunoController
-        AlunoController cliController = new AlunoController();
+        panel = new JPanel();
+        panel.setLayout(new FlowLayout());
 
+        AlunoController aluno = new AlunoController();
 
+        tabela = new JTable(modelo);
+        modelo.addColumn("Id");
+        modelo.addColumn("Nome");
+        tabela.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tabela.getColumnModel().getColumn(1).setPreferredWidth(80);
+        tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
 
-        int escolha;
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
 
-        do {
-            exibirMenu();
-            System.out.println("Insira sua opção: ");
-            //variável para guardar as opções que vou dar para meu usuário
-            escolha = scanner.nextInt();
+        aluno.listarAlunos(modelo);
 
-            //switch para manipular a escolha do usuário
-            switch (escolha) {
-                case 1:
-                    System.out.println("Opção 1 selecionada");
-                    cliController.listarClientes();
-                    break;
+        JScrollPane barraRolagem = new JScrollPane(tabela);
+        frame.add(barraRolagem);
 
-                case 2:
-                    System.out.println("Insira um novo nome: ");
-                    Scanner scannerString = new Scanner(System.in);
-                    String nome = scannerString.nextLine(); //recebo esse novo nome
-                    cliController.adicionarCliente(nome);
-                    break;
+        //abaixo eu crio os meus componentes
+        btnAdicionar = new JButton("Adicionar um novo aluno");
+        btnAdicionar.setActionCommand("adicionarAluno");
+        btnAlterar = new JButton("Alterar um aluno");
+        btnAlterar.setActionCommand("alterarAluno");
+        btnRemover = new JButton("Remover um Aluno");
+        btnRemover.setActionCommand("removerAluno");
+        btnAcao = new JButton("Voltar para o Menu Principal");
+        btnAcao.setActionCommand("VoltarMenuPrincipal");
 
-                case 3:
-                    System.out.println("Insira o id do aluno: ");
-                    Scanner scannerId = new Scanner(System.in);
-                    Integer id = scannerId.nextInt(); //recebo esse id
-                    /* feito isso eu tenho que fazer uma busca dentro do meu banco de dados e implementar
-                     * mais um método em ModelsDAO.AlunoDAO: public movie findById(Integer id).
-                     * Porque precisa desse método? Para que através do id que o usuário inserir eu vou
-                     * dentro do banco de dados, identifico se realmente existe e com base nisso consigo
-                     * saber se meu id é válido ou não
-                     */
+        frame.add(panel);
+        frame.add(btnAdicionar);
+        frame.add(btnAlterar);
+        frame.add(btnRemover);
+        frame.add(btnAcao);
 
-                    //eu vou buscar o id que o usuário já inseriu
-                    Aluno alunoExiste = new Aluno();
-                    alunoExiste = cliController.buscarClienteporID(alunoExiste, id);
+//        aqui vou trabalhar com meus eventos
+        btnAlterar.addActionListener(new Routes(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
+        btnRemover.addActionListener(new Routes(btnRemover, frame)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
 
-                    //verifico se o retorno é diferende de nulo
-                    if (alunoExiste != null){
-                        System.out.println("Insira o novo nome do aluno: ");
-                        /* só pra lembrar, criei uma nova instância scanner porque estava dando erro ao usar
-                         * uma instância que já tinha sido usada anteriormente.
-                         */
-                        Scanner scanNovoNomeCliente = new Scanner(System.in);
-                        String novoNomeCliente = scanNovoNomeCliente.nextLine();
-                        cliController.editarCliente(alunoExiste, novoNomeCliente);
-                    } else {
-                        System.out.println("Não existe nenhum aluno com esse id!");
-                    }
-
-                    break;
-                case 4:
-                    System.out.println("Opção 4 selecionada");
-
-                    System.out.println("Insira o id do aluno: ");
-                    Scanner scannerIdDelete = new Scanner(System.in);
-                    Integer idDelete = scannerIdDelete.nextInt(); //recebo esse id
-
-                    Aluno alunoExisteDelete = new Aluno();
-                    alunoExisteDelete = cliController.buscarClienteporID(alunoExisteDelete, idDelete);
-
-                    //verifico se o retorno é diferende de nulo
-                    if (alunoExisteDelete != null){
-                        cliController.removerCliente(alunoExisteDelete);
-                        System.out.println("Aluno removido com sucesso");
-                    } else {
-                        System.out.println("Não existe nenhum aluno com esse id!");
-                    }
-                    break;
-                case 5:
-                    System.out.println("Você inseriu o valor 5. Você irá voltar ao menu principal...");
-                    break;
-                case 6:
-                    System.out.println("Você inseriu o valor 6, o programa será encerrado.");
-                    System.exit(0);
-                default:
-                    System.out.println("Opção Inválida");
-            }
-
-        } while (escolha >= 1 && escolha <= 4);
-    }
-
-    public static void exibirMenu(){
-        System.out.printf("\n---------- MENU ALUNOS ----------\n");
-        System.out.println("1 - Listar Alunos");
-        System.out.println("2 - Criar novo Aluno");
-        System.out.println("3 - Alterar Aluno");
-        System.out.println("4 - Deletar Aluno");
-        System.out.println("5 - Voltar para o menu principal");
-        System.out.println("6 - Sair do programa");
-        System.out.println("---------- MENU ALUNOS ----------");
-
+        frame.setVisible(true);
     }
 }
