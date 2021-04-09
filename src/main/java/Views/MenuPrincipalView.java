@@ -10,7 +10,11 @@ public class MenuPrincipalView {
     //    defino os componentes que serão utilizados
     private JFrame mainFrame;
     private JPanel mainPanel;
-    private JButton btnAcao;
+    private JButton btnAcaoAlunos;
+    private JButton btnAcaoInstrutores;
+    private JButton btnAcaoTreinos;
+    private JButton btnAcaoAparelhos;
+    private JButton btnAcaoPlanos;
 
     public MenuPrincipalView(){
         verMenuPrincipal();
@@ -29,14 +33,30 @@ public class MenuPrincipalView {
         mainPanel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnAcao = new JButton("Ver e Gerenciar Alunos");
-        btnAcao.setActionCommand("verTelaAlunos");
+        btnAcaoTreinos = new JButton("Ver e Gerenciar Instrutores");
+        btnAcaoTreinos.setActionCommand("verTelaInstrutores");
+        btnAcaoInstrutores = new JButton("Ver e Gerenciar Treinos");
+        btnAcaoInstrutores.setActionCommand("verTelaTreinos");
+        btnAcaoAlunos = new JButton("Ver e Gerenciar Alunos");
+        btnAcaoAlunos.setActionCommand("verTelaAlunos");
+        btnAcaoAparelhos = new JButton("Ver e Gerenciar Aparelhos");
+        btnAcaoAparelhos.setActionCommand("verTelaAparelhos");
+        btnAcaoPlanos = new JButton("Ver e Gerenciar Planos");
+        btnAcaoPlanos.setActionCommand("verTelaPlanos");
 
         mainFrame.add(mainPanel);
-        mainFrame.add(btnAcao);
+        mainFrame.add(btnAcaoInstrutores);
+        mainFrame.add(btnAcaoTreinos);
+        mainFrame.add(btnAcaoAlunos);
+        mainFrame.add(btnAcaoAparelhos);
+        mainFrame.add(btnAcaoPlanos);
 
 //        aqui vou trabalhar com meus eventos
-        btnAcao.addActionListener(new Routes(btnAcao, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoAlunos.addActionListener(new Routes(btnAcaoAlunos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoInstrutores.addActionListener(new Routes(btnAcaoInstrutores, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoTreinos.addActionListener(new Routes(btnAcaoTreinos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoAparelhos.addActionListener(new Routes(btnAcaoAparelhos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoPlanos.addActionListener(new Routes(btnAcaoPlanos, mainFrame)); //a partir daqui a Controller passará a assumir
 
         mainFrame.setVisible(true);
     }

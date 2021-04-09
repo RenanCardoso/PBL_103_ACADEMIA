@@ -138,7 +138,7 @@ public class AlunoDAO {
     /* a parte de update eu posso ou não retornar dado. Tenho que primeiramente receber o meu dado antigo
      * e o meu dado novo que quero trabalhar
      */
-    public void update(Aluno alunoOld, Aluno alunoNew) throws SQLException {
+    public void update(Integer idAlunoAntigo, Aluno alunoNew) throws SQLException {
         /* vamos indicar o que eu quero fazer no update, neste caso só temos o nosso name onde vamos
          * receber o dado de maneira dinâmica (usando a interrogação) e o id será um dado dinâmico também
          */
@@ -154,13 +154,13 @@ public class AlunoDAO {
     }
 
     // a parte de deletar eu vou receber o que de fato eu desejo deletar
-    public void remove(Aluno aluno) throws SQLException {
+    public void remove(Integer idAlunoSelecionado) throws SQLException {
         String query = "DELETE FROM aluno WHERE idaluno = ?"; //para remover em tempo de execução usa interrogação
 
         statement = connection.prepareStatement(query);
 
         //logo depois seto o meu valor dinâmico
-        statement.setInt(1, aluno.getId()); //se usa o setInt já que estou trabalhando com o meu id (interrogação) e eu sei que é inteiro
+        statement.setInt(1, idAlunoSelecionado); //se usa o setInt já que estou trabalhando com o meu id (interrogação) e eu sei que é inteiro
         //quero trabalhar com índice 1 por que só tenho uma opção
 
         //finalizando

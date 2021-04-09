@@ -1,7 +1,6 @@
 package Models;
-import Modules.Controllers.AlunoController;
 
-public class Aluno extends AlunoController {
+public class Aluno {
 
     private Integer id;
     private String nome;
@@ -34,7 +33,7 @@ public class Aluno extends AlunoController {
         return nome;
     }
 
-    public void setName(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 }

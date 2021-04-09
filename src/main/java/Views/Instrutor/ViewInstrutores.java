@@ -1,7 +1,6 @@
-package Views;
+package Views.Instrutor;
 
-import Models.Aluno;
-import Modules.Controllers.AlunoController;
+import Modules.Controllers.InstrutorController;
 import Modules.Controllers.Routes;
 
 import javax.swing.*;
@@ -9,9 +8,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.SQLException;
-import java.util.Scanner;
 
-public class ViewAluno {
+public class ViewInstrutores {
 
     //    defino os componentes que serão utilizados
     private static JFrame frame;
@@ -23,14 +21,14 @@ public class ViewAluno {
     private static JTable tabela;
     private static DefaultTableModel modelo = new DefaultTableModel();
 
-        public ViewAluno() throws SQLException {
-            verTelaAluno();
-        }
+    public ViewInstrutores() throws SQLException {
+        verTelaInstrutor();
+    }
 
-    public static void verTelaAluno() throws SQLException {
+    public static void verTelaInstrutor() throws SQLException {
 
         //        crio o meu Jframe
-        frame = new JFrame("Alunos");
+        frame = new JFrame("Instrutores");
         frame.setBounds(100, 100, 750, 550);
 //        e coloco a operação de fechar padrão no botão x
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,12 +37,14 @@ public class ViewAluno {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-        AlunoController aluno = new AlunoController();
+        InstrutorController instrutor = new InstrutorController();
 
         tabela = new JTable(modelo);
-        modelo.addColumn("Id");
-        modelo.addColumn("Nome");
-        tabela.getColumnModel().getColumn(0).setPreferredWidth(10);
+        if (modelo.getColumnCount() <= 0) {
+            modelo.addColumn("Id");
+            modelo.addColumn("Nome");
+        }
+        tabela.getColumnModel().getColumn(0).setPreferredWidth(20);
         tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
         tabela.getColumnModel().getColumn(1).setPreferredWidth(80);
         tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
@@ -54,18 +54,18 @@ public class ViewAluno {
         tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
         tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
 
-        aluno.listarAlunos(modelo);
+        instrutor.listarInstrutoresComTabela(modelo);
 
         JScrollPane barraRolagem = new JScrollPane(tabela);
         frame.add(barraRolagem);
 
         //abaixo eu crio os meus componentes
-        btnAdicionar = new JButton("Adicionar um novo aluno");
-        btnAdicionar.setActionCommand("adicionarAluno");
-        btnAlterar = new JButton("Alterar um aluno");
-        btnAlterar.setActionCommand("alterarAluno");
-        btnRemover = new JButton("Remover um Aluno");
-        btnRemover.setActionCommand("removerAluno");
+        btnAdicionar = new JButton("Adicionar um novo instrutor");
+        btnAdicionar.setActionCommand("verTelaAdicionarInstrutor");
+        btnAlterar = new JButton("Alterar um instrutor");
+        btnAlterar.setActionCommand("verTelaAlterarInstrutor");
+        btnRemover = new JButton("Remover um Instrutor");
+        btnRemover.setActionCommand("verTelaRemoverInstrutor");
         btnAcao = new JButton("Voltar para o Menu Principal");
         btnAcao.setActionCommand("VoltarMenuPrincipal");
 
@@ -76,6 +76,7 @@ public class ViewAluno {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
+        btnAdicionar.addActionListener(new Routes(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
         btnAlterar.addActionListener(new Routes(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
         btnRemover.addActionListener(new Routes(btnRemover, frame)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
