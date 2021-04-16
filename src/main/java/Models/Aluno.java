@@ -1,9 +1,6 @@
 package Models;
 
-public class Aluno {
-
-    private Integer id;
-    private String nome;
+public class Aluno extends Pessoa {
 
     /* uma model é basicamente o espelho do nosso banco de dados. Basicamente cada instância que eu
      * criar da minha Models.Aluno vai ser um novo registro que vou gerar dentro do meu banco de dados na tabela movie

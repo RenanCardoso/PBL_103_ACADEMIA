@@ -34,7 +34,7 @@ public class ViewAdicionarInstrutor {
         panel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnSalvar = new JButton("Salvar");
+        btnSalvar = new JButton("Adicionar");
         btnSalvar.setActionCommand("adicionarInstrutor");
         btnVoltarMenuUsuarios = new JButton("Voltar para o Menu de Gerenciar Instrutores");
         btnVoltarMenuUsuarios.setActionCommand("verTelaInstrutores");

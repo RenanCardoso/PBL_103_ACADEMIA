@@ -34,7 +34,7 @@ public class ViewRemoverAluno {
         panel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnSalvar = new JButton("Salvar");
+        btnSalvar = new JButton("Remover");
         btnSalvar.setActionCommand("removerAluno");
         btnVoltarMenuUsuarios = new JButton("Voltar para o Menu de Gerenciar Alunos");
         btnVoltarMenuUsuarios.setActionCommand("verTelaAlunos");

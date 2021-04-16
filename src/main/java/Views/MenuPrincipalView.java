@@ -27,7 +27,7 @@ public class MenuPrincipalView {
         mainFrame.setBounds(100, 100, 750, 550);
 //        e coloco a operação de fechar padrão no botão x
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainFrame.setLayout(new FlowLayout(0));
+        mainFrame.setLayout(new GridLayout(4,2));
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new FlowLayout());

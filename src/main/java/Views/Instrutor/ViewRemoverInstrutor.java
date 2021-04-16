@@ -34,7 +34,7 @@ public class ViewRemoverInstrutor {
         panel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnSalvar = new JButton("Salvar");
+        btnSalvar = new JButton("Remover");
         btnSalvar.setActionCommand("removerInstrutor");
         btnVoltarMenuUsuarios = new JButton("Voltar para o Menu de Gerenciar Instrutores");
         btnVoltarMenuUsuarios.setActionCommand("verTelaInstrutores");

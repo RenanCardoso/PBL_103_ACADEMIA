@@ -36,7 +36,7 @@ public class ViewAlterarAparelho {
         panel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnSalvar = new JButton("Salvar");
+        btnSalvar = new JButton("Alterar");
         btnSalvar.setActionCommand("alterarAparelho");
         btnVoltarMenuUsuarios = new JButton("Voltar para o Menu de Gerenciar Aparelhos");
         btnVoltarMenuUsuarios.setActionCommand("verTelaAparelhos");

@@ -1,6 +1,5 @@
 package ModelsDAO;
 
-import Database.ConnectionFactory;
 import Models.Treino;
 
 import java.sql.*;
@@ -9,11 +8,12 @@ import java.util.List;
 
 public class TreinoDAO {
 
-    private Connection connection = null;
-    private PreparedStatement statement = null;
+    private Connection connection;
+    private PreparedStatement statement;
 
     public TreinoDAO(){
-        connection = new ConnectionFactory().getConnection();
+        this.connection = new DAO().getCon();
+        this.statement = new DAO().getState();
     }
 
     public List<Treino> findAll() throws SQLException {

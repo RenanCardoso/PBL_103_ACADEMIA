@@ -36,7 +36,7 @@ public class ViewAlterarTreino {
         panel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnSalvar = new JButton("Salvar");
+        btnSalvar = new JButton("Alterar");
         btnSalvar.setActionCommand("alterarTreino");
         btnVoltarMenuUsuarios = new JButton("Voltar para o Menu de Gerenciar Treinos");
         btnVoltarMenuUsuarios.setActionCommand("verTelaTreinos");

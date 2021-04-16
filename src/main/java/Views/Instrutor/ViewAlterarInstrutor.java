@@ -37,7 +37,7 @@ public class ViewAlterarInstrutor {
         panel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnSalvar = new JButton("Salvar");
+        btnSalvar = new JButton("Alterar");
         btnSalvar.setActionCommand("alterarInstrutor");
         btnVoltarMenuUsuarios = new JButton("Voltar para o Menu de Gerenciar Instrutores");
         btnVoltarMenuUsuarios.setActionCommand("verTelaInstrutores");

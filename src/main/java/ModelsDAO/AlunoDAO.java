@@ -9,30 +9,21 @@ package ModelsDAO;/* geralmente você tem um DAO pra cada model que você cria, 
  * dados.
  */
 
-import Database.ConnectionFactory;
 import Models.Aluno;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlunoDAO {
-    /* Agora que já conseguimos ter a nossa conexão com o banco em qualquer local fica fácil de chamá-la
-     * baseado nisso então podemos chamar a conexão dentro desta classe.
-     */
+public class AlunoDAO extends DAO {
 
-    //a primeira coisa a fazer é criar o atributo connection
-    private Connection connection = null;
-    private PreparedStatement statement = null;
+    private Connection connection;
+    private PreparedStatement statement;
 
     //ao criar uma nova instância de ModelsDAO.AlunoDAO automaticamente a minha connection irá criar um novo objeto
     public AlunoDAO(){
-
-        //está recebendo uma nova instância que vai trazer contigo a possibilidade de conexão junto ao mysql
-        connection = new ConnectionFactory().getConnection();
-        /* a partir deste momento eu já tenho minha conexão disponível dentro desta minha classe para
-         * manipular os meus dados através de comandos DML (INSERT, UPDATE e DELETE.)
-         */
+        this.connection = new DAO().getCon();
+        this.statement = new DAO().getState();
     }
 
     //temos 4 métodos para 4 itens do menu que estão disponíveis

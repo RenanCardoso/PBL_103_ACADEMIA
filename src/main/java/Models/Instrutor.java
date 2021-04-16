@@ -1,35 +1,32 @@
 package Models;
 
-public class Instrutor {
-
-    private Integer idinstrutor;
-    private String nomeinstrutor;
+public class Instrutor extends Pessoa {
 
     //construtor
     public Instrutor(){}
 
     public Instrutor(String nomeinstrutor){
-        this.nomeinstrutor = nomeinstrutor;
+        this.nome = nomeinstrutor;
     }
 
     public Instrutor(Integer idinstrutor, String nomeinstrutor){
-        this.idinstrutor = idinstrutor;
-        this.nomeinstrutor = nomeinstrutor;
+        this.id = idinstrutor;
+        this.nome = nomeinstrutor;
     }
 
     public Integer getId() {
-        return idinstrutor;
+        return id;
     }
 
     public void setId(Integer idinstrutor) {
-        this.idinstrutor = idinstrutor;
+        this.id = idinstrutor;
     }
 
     public String getNome() {
-        return nomeinstrutor;
+        return nome;
     }
 
     public void setName(String nomeinstrutor) {
-        this.nomeinstrutor = nomeinstrutor;
+        this.nome = nomeinstrutor;
     }
 }

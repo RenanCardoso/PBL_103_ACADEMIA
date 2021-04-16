@@ -24,20 +24,29 @@ public class ConnectionFactory {
     private final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver"; /* como estou usando um driver do mysql
      * para Java maior ou igual a versão 5.1 posso mudar para "com.mysql.cj.jdbc.Driver" se for menor
      * deve usar com.mysql.jdbc.Driver */
+    private Connection connection;
+    private static ConnectionFactory instancia = new ConnectionFactory();
 
-    private Connection createConnection(){
-        Connection connection = null;
-
+    private ConnectionFactory(){
         try {
             Class.forName(DRIVER_CLASS);
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException | ClassNotFoundException e){
             e.printStackTrace();
         }
-        return connection;
     }
 
-    public Connection getConnection(){
-        return createConnection();
+    public static ConnectionFactory instancia() {
+        if (instancia == null) {
+            instancia = new ConnectionFactory();
+        }
+        return instancia;
+    }
+
+    /**
+     * Obter a conexão com a base de dados
+     */
+    public Connection getConnection() {
+        return connection;
     }
 }
