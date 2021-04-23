@@ -68,10 +68,11 @@ public class SetupDatabase {
          */
 
         //crio agora meu comando sql, feito isso já tenho uma tabela e dois campos criados
-        String sql = "CREATE TABLE IF NOT EXISTS aluno (idaluno INTEGER NOT NULL AUTO_INCREMENT, nome VARCHAR(255) NOT NULL, PRIMARY KEY (id))";
+//        String sql = "CREATE TABLE IF NOT EXISTS aluno (idaluno INTEGER NOT NULL AUTO_INCREMENT, nome VARCHAR(255) NOT NULL, PRIMARY KEY (id))";
         /* Lembrando que deve melhorar o CREATE adicionando um if not exists apenas para evitar que ele fique
          * criando esta tabela e gere alguns erros
          */
+        String sql = "CREATE TABLE IF NOT EXISTS plano (idplano INTEGER NOT NULL AUTO_INCREMENT, nomeplano VARCHAR(255) NOT NULL, PRIMARY KEY (idplano))";
 
         //vamos testar o comando DROP TABLE para apagar a tabela
         //String sql = "DROP TABLE movie";

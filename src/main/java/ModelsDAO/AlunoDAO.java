@@ -9,30 +9,21 @@ package ModelsDAO;/* geralmente você tem um DAO pra cada model que você cria, 
  * dados.
  */
 
-import Database.ConnectionFactory;
 import Models.Aluno;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlunoDAO {
-    /* Agora que já conseguimos ter a nossa conexão com o banco em qualquer local fica fácil de chamá-la
-     * baseado nisso então podemos chamar a conexão dentro desta classe.
-     */
+public class AlunoDAO extends DAO {
 
-    //a primeira coisa a fazer é criar o atributo connection
-    private Connection connection = null;
-    private PreparedStatement statement = null;
+    private Connection connection;
+    private PreparedStatement statement;
 
     //ao criar uma nova instância de ModelsDAO.AlunoDAO automaticamente a minha connection irá criar um novo objeto
     public AlunoDAO(){
-
-        //está recebendo uma nova instância que vai trazer contigo a possibilidade de conexão junto ao mysql
-        connection = new ConnectionFactory().getConnection();
-        /* a partir deste momento eu já tenho minha conexão disponível dentro desta minha classe para
-         * manipular os meus dados através de comandos DML (INSERT, UPDATE e DELETE.)
-         */
+        this.connection = new DAO().getCon();
+        this.statement = new DAO().getState();
     }
 
     //temos 4 métodos para 4 itens do menu que estão disponíveis
@@ -120,7 +111,7 @@ public class AlunoDAO {
 
 
         //no lugar da interrogação eu vou passar os dados de forma dinâmica em runtime, para fazer isso:
-        statement.setString(1, aluno.getName()); //capturo através do meu getName
+        statement.setString(1, aluno.getNome()); //capturo através do meu getName
         /* passei o index que está localizado, ou seja, a onde eu desejo inserir, no meu caso só tenho uma
          * interrogação então eu sei que é na minha primeira posição e o que eu desejo inserir
          */
@@ -138,7 +129,7 @@ public class AlunoDAO {
     /* a parte de update eu posso ou não retornar dado. Tenho que primeiramente receber o meu dado antigo
      * e o meu dado novo que quero trabalhar
      */
-    public void update(Aluno alunoOld, Aluno alunoNew) throws SQLException {
+    public void update(Integer idAlunoAntigo, Aluno alunoNew) throws SQLException {
         /* vamos indicar o que eu quero fazer no update, neste caso só temos o nosso name onde vamos
          * receber o dado de maneira dinâmica (usando a interrogação) e o id será um dado dinâmico também
          */
@@ -148,19 +139,19 @@ public class AlunoDAO {
         statement = connection.prepareStatement(query);
 
         //seto meus valores
-        statement.setString(1, alunoNew.getName());
+        statement.setString(1, alunoNew.getNome());
         statement.setInt(2, alunoNew.getId());
         statement.execute();
     }
 
     // a parte de deletar eu vou receber o que de fato eu desejo deletar
-    public void remove(Aluno aluno) throws SQLException {
+    public void remove(Integer idAlunoSelecionado) throws SQLException {
         String query = "DELETE FROM aluno WHERE idaluno = ?"; //para remover em tempo de execução usa interrogação
 
         statement = connection.prepareStatement(query);
 
         //logo depois seto o meu valor dinâmico
-        statement.setInt(1, aluno.getId()); //se usa o setInt já que estou trabalhando com o meu id (interrogação) e eu sei que é inteiro
+        statement.setInt(1, idAlunoSelecionado); //se usa o setInt já que estou trabalhando com o meu id (interrogação) e eu sei que é inteiro
         //quero trabalhar com índice 1 por que só tenho uma opção
 
         //finalizando
