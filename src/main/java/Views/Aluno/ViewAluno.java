@@ -1,7 +1,7 @@
 package Views.Aluno;
 
 import Modules.Controllers.AlunoController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasAluno;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -76,10 +76,10 @@ public class ViewAluno {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnAdicionar.addActionListener(new Routes(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
-        btnAlterar.addActionListener(new Routes(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
-        btnRemover.addActionListener(new Routes(btnRemover, frame)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnAdicionar.addActionListener(new RotasAluno(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
+        btnAlterar.addActionListener(new RotasAluno(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
+        btnRemover.addActionListener(new RotasAluno(btnRemover, frame)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasAluno(btnAcao, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

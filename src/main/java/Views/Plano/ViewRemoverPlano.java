@@ -1,7 +1,7 @@
 package Views.Plano;
 
 import Modules.Controllers.PlanoController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasPlano;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,9 +55,9 @@ public class ViewRemoverPlano {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new Routes(btnSalvar, frame, combobox)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new Routes(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasPlano(btnSalvar, frame, combobox)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasPlano(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasPlano(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

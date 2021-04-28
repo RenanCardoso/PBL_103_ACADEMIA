@@ -1,7 +1,7 @@
 package Views.Plano;
 
 import Modules.Controllers.PlanoController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasPlano;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -76,10 +76,10 @@ public class ViewPlano {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnAdicionar.addActionListener(new Routes(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
-        btnAlterar.addActionListener(new Routes(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
-        btnRemover.addActionListener(new Routes(btnRemover, frame)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnAdicionar.addActionListener(new RotasPlano(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
+        btnAlterar.addActionListener(new RotasPlano(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
+        btnRemover.addActionListener(new RotasPlano(btnRemover, frame)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasPlano(btnAcao, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

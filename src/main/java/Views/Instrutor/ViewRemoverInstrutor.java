@@ -1,7 +1,7 @@
 package Views.Instrutor;
 
 import Modules.Controllers.InstrutorController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasInstrutor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,9 +54,9 @@ public class ViewRemoverInstrutor {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new Routes(btnSalvar, frame, combobox)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new Routes(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasInstrutor(btnSalvar, frame, combobox)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasInstrutor(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasInstrutor(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

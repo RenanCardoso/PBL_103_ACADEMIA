@@ -1,6 +1,6 @@
 package Views;
 
-import Modules.Controllers.Routes;
+import Modules.Routes.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,11 +52,11 @@ public class MenuPrincipalView {
         mainFrame.add(btnAcaoPlanos);
 
 //        aqui vou trabalhar com meus eventos
-        btnAcaoAlunos.addActionListener(new Routes(btnAcaoAlunos, mainFrame)); //a partir daqui a Controller passará a assumir
-        btnAcaoInstrutores.addActionListener(new Routes(btnAcaoInstrutores, mainFrame)); //a partir daqui a Controller passará a assumir
-        btnAcaoTreinos.addActionListener(new Routes(btnAcaoTreinos, mainFrame)); //a partir daqui a Controller passará a assumir
-        btnAcaoAparelhos.addActionListener(new Routes(btnAcaoAparelhos, mainFrame)); //a partir daqui a Controller passará a assumir
-        btnAcaoPlanos.addActionListener(new Routes(btnAcaoPlanos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoAlunos.addActionListener(new RotasAluno(btnAcaoAlunos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoInstrutores.addActionListener(new RotasInstrutor(btnAcaoInstrutores, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoTreinos.addActionListener(new RotasTreino(btnAcaoTreinos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoAparelhos.addActionListener(new RotasAparelho(btnAcaoAparelhos, mainFrame)); //a partir daqui a Controller passará a assumir
+        btnAcaoPlanos.addActionListener(new RotasPlano(btnAcaoPlanos, mainFrame)); //a partir daqui a Controller passará a assumir
 
         mainFrame.setVisible(true);
     }

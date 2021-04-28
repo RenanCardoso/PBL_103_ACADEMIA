@@ -1,10 +1,9 @@
 package Views.Aparelho;
 
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasAparelho;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 
 public class ViewAdicionarAparelho {
 
@@ -52,9 +51,9 @@ public class ViewAdicionarAparelho {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new Routes(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new Routes(btnVoltarMenuUsuarios, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame, nome)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

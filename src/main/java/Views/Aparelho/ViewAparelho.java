@@ -1,7 +1,7 @@
 package Views.Aparelho;
 
 import Modules.Controllers.AparelhoController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasAparelho;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -76,10 +76,10 @@ public class ViewAparelho {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnAdicionar.addActionListener(new Routes(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
-        btnAlterar.addActionListener(new Routes(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
-        btnRemover.addActionListener(new Routes(btnRemover, frame)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnAdicionar.addActionListener(new RotasAparelho(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
+        btnAlterar.addActionListener(new RotasAparelho(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
+        btnRemover.addActionListener(new RotasAparelho(btnRemover, frame)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

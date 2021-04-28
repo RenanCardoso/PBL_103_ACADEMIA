@@ -1,7 +1,7 @@
 package Views.Aparelho;
 
 import Modules.Controllers.AparelhoController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasAparelho;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,9 +55,9 @@ public class ViewRemoverAparelho {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new Routes(btnSalvar, frame, combobox)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new Routes(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, combobox)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

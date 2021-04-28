@@ -6,6 +6,12 @@ public class Aluno extends Pessoa {
      * criar da minha Models.Aluno vai ser um novo registro que vou gerar dentro do meu banco de dados na tabela movie
      */
 
+    float peso;
+    float altura;
+    float indicemassacorporal;
+    Integer idplano;
+    Integer idfichatreino;
+
     //construtor
     public Aluno(){}
 
@@ -16,6 +22,22 @@ public class Aluno extends Pessoa {
     public Aluno(Integer id, String nome){
         this.id = id;
         this.nome = nome;
+    }
+
+    public Aluno(float peso, float altura, float indicemassacorporal, Integer idplano, Integer idfichatreino, Integer id, String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, String status) {
+        this.peso = peso;
+        this.altura = altura;
+        this.indicemassacorporal = indicemassacorporal;
+        this.idplano = idplano;
+        this.idfichatreino = idfichatreino;
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.idade = idade;
+        this.numcelular = numcelular;
+        this.numcelularopc = numcelularopc;
+        this.status = status;
     }
 
     public Integer getId() {

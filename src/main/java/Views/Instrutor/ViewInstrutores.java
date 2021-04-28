@@ -1,7 +1,7 @@
 package Views.Instrutor;
 
 import Modules.Controllers.InstrutorController;
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasInstrutor;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -76,10 +76,10 @@ public class ViewInstrutores {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnAdicionar.addActionListener(new Routes(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
-        btnAlterar.addActionListener(new Routes(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
-        btnRemover.addActionListener(new Routes(btnRemover, frame)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnAdicionar.addActionListener(new RotasInstrutor(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
+        btnAlterar.addActionListener(new RotasInstrutor(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
+        btnRemover.addActionListener(new RotasInstrutor(btnRemover, frame)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasInstrutor(btnAcao, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

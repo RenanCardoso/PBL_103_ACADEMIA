@@ -1,6 +1,6 @@
 package Views.Treino;
 
-import Modules.Controllers.Routes;
+import Modules.Routes.RotasTreino;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,9 +52,9 @@ public class ViewAdicionarTreino {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new Routes(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new Routes(btnAcao, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new Routes(btnVoltarMenuUsuarios, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasTreino(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasTreino(btnAcao, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasTreino(btnVoltarMenuUsuarios, frame, nome)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

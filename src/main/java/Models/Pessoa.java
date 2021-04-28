@@ -8,10 +8,10 @@ public class Pessoa {
     protected String nome;
     protected String cpf;
     protected String rg;
-    protected int idade;
+    protected Integer idade;
     protected String numcelular;
     protected String numcelularopc;
-    private String status;
+    protected String status;
 
     public Pessoa(){}
 
