@@ -11,6 +11,7 @@ public class Pessoa {
     protected Integer idade;
     protected String numcelular;
     protected String numcelularopc;
+    protected String email;
     protected String status;
 
     public Pessoa(){}

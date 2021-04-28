@@ -11,11 +11,24 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class RotasAluno implements ActionListener {
 
+    private static JTextField txtnome;
+    private static JTextField txtcpf;
+    private static JTextField txtrg;
+    private static JTextField txtidade;
+    private static JTextField txtemail;
+    private static JTextField txtnumPrincipal;
+    private static JTextField txtnumSecundario;
+    private JComboBox comboinstrutor = new JComboBox();
+    private JComboBox comboplano = new JComboBox();
+    private JComboBox combofichatreino = new JComboBox();
+    private JComboBox combostatus= new JComboBox();
+    private static JTextField txtaltura;
+    private static JTextField txtpeso;
     private JButton btnOpcao;
-    private JTextField txtNome;
     private JComboBox combobox = new JComboBox();
 
     AlunoController alunoCon = new AlunoController();
@@ -27,19 +40,25 @@ public class RotasAluno implements ActionListener {
         frame.dispose();
     }
 
-    //    construtor para adicionar aluno
-    public RotasAluno(JButton opcao, JFrame frame, JTextField txtNome){
+    //    construtor para adicionar aluno com somente os campos obrigatórios
+    public RotasAluno(JButton opcao, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JComboBox status, JComboBox plano){
         this.btnOpcao = opcao;
-        this.txtNome = txtNome;
 
+        this.comboplano = plano;
+        this.txtnome = nome;
+        this.txtcpf = cpf;
+        this.txtrg = rg;
+        this.txtidade = idade;
+        this.txtnumPrincipal = numPrincipal;
+        this.combobox = status;
         frame.dispose();
     }
 
     //    construtor para editar aluno
-    public RotasAluno(JButton opcao, JFrame frame, JTextField txtNome, JComboBox combobox){
+    public RotasAluno(JButton opcao, JFrame frame, JTextField txtnome, JComboBox combobox){
         this.btnOpcao = opcao;
         this.combobox = combobox;
-        this.txtNome = txtNome;
+        this.txtnome = txtnome;
 
         frame.dispose();
     }
@@ -66,12 +85,16 @@ public class RotasAluno implements ActionListener {
                 }
                 break;
             case "verTelaAdicionarAluno":
-                new ViewAdicionarAluno();
+                try {
+                    new ViewAdicionarAluno();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "adicionarAluno":
                 try {
-                    if (txtNome.getText().length() > 0) {
-                        alunoCon.adicionarAluno(txtNome.getText());
+                    if (txtnome.getText().length() > 0) {
+                        alunoCon.adicionarAluno(txtnome.getText());
                         JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
                         new ViewAluno();
                     } else {
@@ -89,7 +112,7 @@ public class RotasAluno implements ActionListener {
                 }
                 break;
             case "alterarAluno":
-                if (txtNome.getText().length() > 0) {
+                if (txtnome.getText().length() > 0) {
                     try {
                         Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
                         Integer idAlunoSelecionado = null;
@@ -100,7 +123,7 @@ public class RotasAluno implements ActionListener {
                             }
                         }
 
-                        alunoCon.editarAluno(idAlunoSelecionado, txtNome.getText());
+                        alunoCon.editarAluno(idAlunoSelecionado, txtnome.getText());
                         JOptionPane.showMessageDialog(null, "Aluno alterado com sucesso");
                         new ViewAluno();
                     } catch (SQLException throwables) {

@@ -8,9 +8,11 @@ public class Aluno extends Pessoa {
 
     float peso;
     float altura;
-    float indicemassacorporal;
+    float imc;
+    Integer idinstrutor;
     Integer idplano;
     Integer idfichatreino;
+//    String senha;
 
     //construtor
     public Aluno(){}
@@ -24,10 +26,11 @@ public class Aluno extends Pessoa {
         this.nome = nome;
     }
 
-    public Aluno(float peso, float altura, float indicemassacorporal, Integer idplano, Integer idfichatreino, Integer id, String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, String status) {
+    public Aluno(float peso, float altura, float imc, Integer idinstrutor, Integer idplano, Integer idfichatreino, Integer id, String nome, String cpf, String rg, Integer idade, String email, String numcelular, String numcelularopc, String status) {
         this.peso = peso;
         this.altura = altura;
-        this.indicemassacorporal = indicemassacorporal;
+        this.imc = imc;
+        this.idinstrutor = idinstrutor;
         this.idplano = idplano;
         this.idfichatreino = idfichatreino;
         this.id = id;
@@ -35,6 +38,7 @@ public class Aluno extends Pessoa {
         this.cpf = cpf;
         this.rg = rg;
         this.idade = idade;
+        this.email = email;
         this.numcelular = numcelular;
         this.numcelularopc = numcelularopc;
         this.status = status;

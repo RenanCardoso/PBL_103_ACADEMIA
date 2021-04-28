@@ -3,7 +3,9 @@ package Views.Aluno;
 import Modules.Routes.RotasAluno;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.text.ParseException;
 
 public class ViewAdicionarAluno {
 
@@ -21,26 +23,37 @@ public class ViewAdicionarAluno {
     private static JLabel labelRg;
     private static JTextField idade;
     private static JLabel labelIdade;
+    private static JTextField email;
+    private static JLabel labelEmail;
     private static JTextField numPrincipal;
     private static JLabel labelNumPrincipal;
     private static JTextField numSecundario;
     private static JLabel labelNumSecundario;
-    private static JTextField status;
-    private static JLabel labelStatus;
     private static JTextField altura;
     private static JLabel labelAltura;
     private static JTextField peso;
     private static JLabel labelPeso;
+    private static JComboBox status;
+    private static JLabel labelStatus;
+    private static JComboBox instrutor;
+    private static JLabel labelInstrutor;
+    private static JComboBox plano;
+    private static JLabel labelPlano;
+    private static JComboBox fichaTreino;
+    private static JLabel labelfichaTreino;
+//    private static JTextField senha;
+//    private static JLabel labelSenha;
 
-    public ViewAdicionarAluno() {
+
+    public ViewAdicionarAluno() throws ParseException {
         verTelaAdicionarAluno();
     }
 
-    public static void verTelaAdicionarAluno() {
+    public static void verTelaAdicionarAluno() throws ParseException {
 
         //        crio o meu Jframe
         frame = new JFrame("Adicionar Aluno");
-        frame.setBounds(100, 100, 750, 550);
+        frame.setBounds(100, 100, 1366, 768);
 //        e coloco a operação de fechar padrão no botão x
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(0));
@@ -60,23 +73,38 @@ public class ViewAdicionarAluno {
         labelNome = new JLabel("Nome do Aluno");
         nome = new JTextField(30);
         labelCpf = new JLabel("CPF do Aluno");
-        cpf = new JTextField(30);
+        cpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
         labelRg = new JLabel("RG do Aluno");
         rg = new JTextField(30);
         labelIdade = new JLabel("Idade do Aluno");
-        idade = new JTextField(30);
+        idade = new JFormattedTextField(new MaskFormatter("###"));
+        labelEmail = new JLabel("E-mail do Aluno");
+        email = new JTextField(30);
         labelNumPrincipal = new JLabel("Número de celular do Aluno");
-        numPrincipal = new JTextField(30);
+        numPrincipal = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
         labelNumSecundario = new JLabel("Número de celular opcional do Aluno");
-        numSecundario = new JTextField(30);
-        labelStatus = new JLabel("Status do Aluno");
-        status = new JTextField(30);
+        numSecundario = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
         labelAltura = new JLabel("Altura do Aluno");
-        altura = new JTextField(30);
+        altura = new JFormattedTextField(new MaskFormatter("#,##"));
         labelPeso = new JLabel("Peso do Aluno");
-        peso = new JTextField(30);
+        peso = new JFormattedTextField(new MaskFormatter("###,##"));
 
-//        formulário
+        labelPlano = new JLabel("Plano do Aluno");
+        plano = new JComboBox();
+        plano.addItem("Plano 1");
+        plano.addItem("Plano 2");
+
+        labelInstrutor = new JLabel("Instrutor do Aluno");
+        instrutor = new JComboBox();
+        status.addItem("Instrutor 1");
+        status.addItem("Instrutor 2");
+
+        labelStatus = new JLabel("Status do Aluno");
+        status = new JComboBox();
+        status.addItem("Ativo");
+        status.addItem("Inativo");
+
+        //        formulário
         frame.add(panel);
         frame.add(labelNome);
         frame.add(nome);
@@ -95,6 +123,8 @@ public class ViewAdicionarAluno {
         frame.add(labelAltura);
         frame.add(altura);
         frame.add(labelPeso);
+        frame.add(plano);
+        frame.add(instrutor);
         frame.add(peso);
 
 //        botoes de acao
@@ -102,9 +132,9 @@ public class ViewAdicionarAluno {
         frame.add(btnVoltarMenuPrinc);
         frame.add(btnAcao);
 
-//        aqui vou trabalhar com meus eventos
-//        btnSalvar.addActionListener(new Routes(btnSalvar, frame, nome, cpf, rg, idade, numPrincipal, numSecundario, status, altura, peso)); //a partir daqui a Controller passará a assumir
-        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
+//        aqui vou trabalhar com meus eventos, vou salvar somente os campos obrigatórios
+        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, cpf, rg, idade, numPrincipal, status, plano)); //a partir daqui a Controller passará a assumir
+//        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAluno(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuPrinc.addActionListener(new RotasAluno(btnVoltarMenuPrinc, frame)); //a partir daqui a Controller passará a assumir
 
