@@ -44,6 +44,17 @@ public class Aluno extends Pessoa {
         this.status = status;
     }
 
+    public Aluno(String nome, String cpf, String rg, Integer idade, String numcelular, String status, Integer idplano, Integer idinstrutor) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.idade = idade;
+        this.status = status;
+        this.numcelular = numcelular;
+        this.idplano = idplano;
+        this.idinstrutor = idinstrutor;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -58,5 +69,27 @@ public class Aluno extends Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+    public String getRg() {
+        return rg;
+    }
+    public Integer getIdade() {
+        return idade;
+    }
+    public String getNumPrincipal() {
+        return numcelular;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public Integer getPlanoDoAluno() {
+        return idplano;
+    }
+    public Integer getInstrutorDoAluno() {
+        return idplano;
     }
 }

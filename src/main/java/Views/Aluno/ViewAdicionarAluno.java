@@ -96,8 +96,8 @@ public class ViewAdicionarAluno {
 
         labelInstrutor = new JLabel("Instrutor do Aluno");
         instrutor = new JComboBox();
-        status.addItem("Instrutor 1");
-        status.addItem("Instrutor 2");
+        instrutor.addItem("Instrutor 1");
+        instrutor.addItem("Instrutor 2");
 
         labelStatus = new JLabel("Status do Aluno");
         status = new JComboBox();
@@ -122,9 +122,11 @@ public class ViewAdicionarAluno {
         frame.add(status);
         frame.add(labelAltura);
         frame.add(altura);
-        frame.add(labelPeso);
+        frame.add(labelPlano);
         frame.add(plano);
+        frame.add(labelInstrutor);
         frame.add(instrutor);
+        frame.add(labelPeso);
         frame.add(peso);
 
 //        botoes de acao
@@ -133,7 +135,7 @@ public class ViewAdicionarAluno {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos, vou salvar somente os campos obrigatórios
-        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, cpf, rg, idade, numPrincipal, status, plano)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, cpf, rg, idade, numPrincipal, status, plano, instrutor)); //a partir daqui a Controller passará a assumir
 //        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAluno(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuPrinc.addActionListener(new RotasAluno(btnVoltarMenuPrinc, frame)); //a partir daqui a Controller passará a assumir

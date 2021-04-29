@@ -104,7 +104,7 @@ public class AlunoDAO extends DAO {
      */
     public void insert(Aluno aluno) throws SQLException {
         //lembrando que o id já está como autoincrement
-        String query = "INSERT INTO aluno (nome) VALUES (?)";
+        String query = "INSERT INTO aluno (nome, cpf, rg, idade, numprincipal, status, idplano, idinstrutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         //mais uma vez vamos usar o PreparedStatement e agora de fato vamos usar ele como deve ser utilizado
         statement = connection.prepareStatement(query);
@@ -115,6 +115,13 @@ public class AlunoDAO extends DAO {
         /* passei o index que está localizado, ou seja, a onde eu desejo inserir, no meu caso só tenho uma
          * interrogação então eu sei que é na minha primeira posição e o que eu desejo inserir
          */
+        statement.setString(2, aluno.getCpf()); //capturo através do meu getName
+        statement.setString(3, aluno.getRg()); //capturo através do meu getName
+        statement.setInt(4, aluno.getIdade()); //capturo através do meu getName
+        statement.setString(5, aluno.getNumPrincipal()); //capturo através do meu getName
+        statement.setString(6, aluno.getStatus()); //capturo através do meu getName
+        statement.setInt(7, aluno.getPlanoDoAluno()); //capturo através do meu getName
+        statement.setInt(8, aluno.getInstrutorDoAluno()); //capturo através do meu getName
 
         //por fim, mando executar o meu PreparedStatement (executar a minha ação)
         statement.execute();

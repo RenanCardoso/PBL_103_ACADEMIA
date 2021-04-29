@@ -36,9 +36,9 @@ public class AlunoController {
         return listaAlunos;
     }
 
-    public void adicionarAluno(String nome) throws SQLException {
+    public void adicionarAluno(String nome, String cpf, String rg, Integer idade, String numcelular, String status, Integer idplano, Integer idinstrutor) throws SQLException {
         //aqui faço a inserção
-        dao.insert(new Aluno(nome));
+        dao.insert(new Aluno(nome, cpf, rg, idade, numcelular, status, idplano, idinstrutor));
         JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
 //        System.out.println("Aluno adicionado com sucesso");
     }

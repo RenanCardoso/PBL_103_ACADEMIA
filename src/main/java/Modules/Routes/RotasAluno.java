@@ -41,10 +41,10 @@ public class RotasAluno implements ActionListener {
     }
 
     //    construtor para adicionar aluno com somente os campos obrigatórios
-    public RotasAluno(JButton opcao, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JComboBox status, JComboBox plano){
+    public RotasAluno(JButton opcao, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JComboBox status, JComboBox planos, JComboBox instrutores){
         this.btnOpcao = opcao;
-
-        this.comboplano = plano;
+        this.comboinstrutor = instrutores;
+        this.comboplano = planos;
         this.txtnome = nome;
         this.txtcpf = cpf;
         this.txtrg = rg;
@@ -94,7 +94,8 @@ public class RotasAluno implements ActionListener {
             case "adicionarAluno":
                 try {
                     if (txtnome.getText().length() > 0) {
-                        alunoCon.adicionarAluno(txtnome.getText());
+                        int idade = Integer.parseInt(txtidade.getText());
+                        alunoCon.adicionarAluno(txtnome.getText(), txtcpf.getText(), txtrg.getText(), idade, txtnumPrincipal.getText(), combostatus.getActionCommand(), comboplano.getSelectedIndex(), comboinstrutor.getSelectedIndex());
                         JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
                         new ViewAluno();
                     } else {
