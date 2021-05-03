@@ -90,6 +90,6 @@ public class Aluno extends Pessoa {
         return idplano;
     }
     public Integer getInstrutorDoAluno() {
-        return idplano;
+        return idinstrutor;
     }
 }

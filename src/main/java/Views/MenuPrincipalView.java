@@ -24,7 +24,7 @@ public class MenuPrincipalView {
 
 //        crio o meu JFrame
         mainFrame = new JFrame("Sistema Academia");
-        mainFrame.setBounds(100, 100, 750, 550);
+        mainFrame.setBounds(100, 100, 1366, 768);
 //        e coloco a operação de fechar padrão no botão x
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLayout(new GridLayout(4,2));
@@ -33,10 +33,10 @@ public class MenuPrincipalView {
         mainPanel.setLayout(new FlowLayout());
 
         //abaixo eu crio os meus componentes
-        btnAcaoTreinos = new JButton("Ver e Gerenciar Instrutores");
-        btnAcaoTreinos.setActionCommand("verTelaInstrutores");
-        btnAcaoInstrutores = new JButton("Ver e Gerenciar Treinos");
-        btnAcaoInstrutores.setActionCommand("verTelaTreinos");
+        btnAcaoInstrutores = new JButton("Ver e Gerenciar Instrutores");
+        btnAcaoInstrutores.setActionCommand("verTelaInstrutores");
+        btnAcaoTreinos = new JButton("Ver e Gerenciar Treinos");
+        btnAcaoTreinos.setActionCommand("verTelaTreinos");
         btnAcaoAlunos = new JButton("Ver e Gerenciar Alunos");
         btnAcaoAlunos.setActionCommand("verTelaAlunos");
         btnAcaoAparelhos = new JButton("Ver e Gerenciar Aparelhos");

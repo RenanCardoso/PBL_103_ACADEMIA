@@ -60,6 +60,20 @@ public class PlanoController {
         dao.remove(treinoExisteDelete);
     }
 
+    public Integer formatarIndicePlano(JComboBox comboplano) throws SQLException {
 
+        Integer indiceComboboxSelecionado = comboplano.getSelectedIndex();
+        Integer idPlanoSelecionado = null;
+        PlanoController planoCon = new PlanoController();
+
+        for (int i = 0; i < planoCon.listarPlanos().size(); i++) {
+
+            if (indiceComboboxSelecionado == i) {
+                idPlanoSelecionado = planoCon.listarPlanos().get(i).getId();
+            }
+        }
+
+        return idPlanoSelecionado;
+    }
 
 }

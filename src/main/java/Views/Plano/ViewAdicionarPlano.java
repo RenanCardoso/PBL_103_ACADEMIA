@@ -25,7 +25,7 @@ public class ViewAdicionarPlano {
 
         //        crio o meu Jframe
         frame = new JFrame("Adicionar Plano");
-        frame.setBounds(100, 100, 750, 550);
+        frame.setBounds(100, 100, 1366, 768);
 //        e coloco a operação de fechar padrão no botão x
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout(0));

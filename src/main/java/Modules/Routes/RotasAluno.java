@@ -1,6 +1,9 @@
 package Modules.Routes;
 
 import Modules.Controllers.AlunoController;
+import Modules.Controllers.InstrutorController;
+import Modules.Controllers.PlanoController;
+import Modules.FormatterFields.FormatterField;
 import Views.Aluno.ViewAdicionarAluno;
 import Views.Aluno.ViewAlterarAluno;
 import Views.Aluno.ViewAluno;
@@ -31,7 +34,13 @@ public class RotasAluno implements ActionListener {
     private JButton btnOpcao;
     private JComboBox combobox = new JComboBox();
 
+    private static String cpfFormatado;
+    private static String numPrincipalFormatado;
+    private static String statusFormatado;
+
     AlunoController alunoCon = new AlunoController();
+    InstrutorController instrutorCon = new InstrutorController();
+    PlanoController planoCon = new PlanoController();
 
 //    construtor para voltar para tela principal de gerenciar alunos
     public RotasAluno(JButton btnAcao, JFrame frame){
@@ -50,7 +59,7 @@ public class RotasAluno implements ActionListener {
         this.txtrg = rg;
         this.txtidade = idade;
         this.txtnumPrincipal = numPrincipal;
-        this.combobox = status;
+        this.combostatus = status;
         frame.dispose();
     }
 
@@ -75,6 +84,8 @@ public class RotasAluno implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
 
         String btnOpcao = this.btnOpcao.getActionCommand();
+        FormatterField formatar = new FormatterField();
+
 
         switch (btnOpcao) {
             case "verTelaAlunos":
@@ -87,15 +98,27 @@ public class RotasAluno implements ActionListener {
             case "verTelaAdicionarAluno":
                 try {
                     new ViewAdicionarAluno();
-                } catch (ParseException e) {
+                } catch (ParseException | SQLException e) {
                     e.printStackTrace();
                 }
                 break;
             case "adicionarAluno":
                 try {
                     if (txtnome.getText().length() > 0) {
+
                         int idade = Integer.parseInt(txtidade.getText());
-                        alunoCon.adicionarAluno(txtnome.getText(), txtcpf.getText(), txtrg.getText(), idade, txtnumPrincipal.getText(), combostatus.getActionCommand(), comboplano.getSelectedIndex(), comboinstrutor.getSelectedIndex());
+                        cpfFormatado = formatar.formatarCPF(txtcpf);
+                        numPrincipalFormatado = formatar.formatarCelular(txtnumPrincipal);
+                        statusFormatado = combostatus.getSelectedItem().toString();
+                        Integer idPlanoSelecionado = planoCon.formatarIndicePlano(comboplano);
+                        Integer idInstrutorSelecionado = instrutorCon.formatarIndiceInstrutor(comboinstrutor);
+                        if (statusFormatado == "Ativo"){
+                            statusFormatado = "ati";
+                        } else {
+                            statusFormatado = "ina";
+                        }
+
+                        alunoCon.adicionarAluno(txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, statusFormatado, idPlanoSelecionado, idInstrutorSelecionado);
                         JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
                         new ViewAluno();
                     } else {

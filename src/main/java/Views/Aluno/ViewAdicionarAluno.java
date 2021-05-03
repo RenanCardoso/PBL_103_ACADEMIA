@@ -1,10 +1,13 @@
 package Views.Aluno;
 
+import Modules.Controllers.InstrutorController;
+import Modules.Controllers.PlanoController;
 import Modules.Routes.RotasAluno;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 public class ViewAdicionarAluno {
@@ -45,11 +48,11 @@ public class ViewAdicionarAluno {
 //    private static JLabel labelSenha;
 
 
-    public ViewAdicionarAluno() throws ParseException {
+    public ViewAdicionarAluno() throws ParseException, SQLException {
         verTelaAdicionarAluno();
     }
 
-    public static void verTelaAdicionarAluno() throws ParseException {
+    public static void verTelaAdicionarAluno() throws ParseException, SQLException {
 
         //        crio o meu Jframe
         frame = new JFrame("Adicionar Aluno");
@@ -70,36 +73,41 @@ public class ViewAdicionarAluno {
         btnAcao.setActionCommand("VoltarMenuPrincipal");
 
 //        labels e botões do formulário
-        labelNome = new JLabel("Nome do Aluno");
+        labelNome = new JLabel("Nome do Aluno *");
         nome = new JTextField(30);
-        labelCpf = new JLabel("CPF do Aluno");
+        labelCpf = new JLabel("CPF do Aluno *");
         cpf = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-        labelRg = new JLabel("RG do Aluno");
+        labelRg = new JLabel("RG do Aluno *");
         rg = new JTextField(30);
-        labelIdade = new JLabel("Idade do Aluno");
-        idade = new JFormattedTextField(new MaskFormatter("###"));
-        labelEmail = new JLabel("E-mail do Aluno");
-        email = new JTextField(30);
-        labelNumPrincipal = new JLabel("Número de celular do Aluno");
+        labelIdade = new JLabel("Idade do Aluno *");
+        idade = new JFormattedTextField(new MaskFormatter("##"));
+        idade.setColumns(20);
+        labelNumPrincipal = new JLabel("Número de celular do Aluno *");
         numPrincipal = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
         labelNumSecundario = new JLabel("Número de celular opcional do Aluno");
         numSecundario = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
+        labelEmail = new JLabel("E-mail do Aluno");
+        email = new JTextField(30);
         labelAltura = new JLabel("Altura do Aluno");
         altura = new JFormattedTextField(new MaskFormatter("#,##"));
         labelPeso = new JLabel("Peso do Aluno");
         peso = new JFormattedTextField(new MaskFormatter("###,##"));
 
-        labelPlano = new JLabel("Plano do Aluno");
+        labelPlano = new JLabel("Plano do Aluno *");
         plano = new JComboBox();
-        plano.addItem("Plano 1");
-        plano.addItem("Plano 2");
+        PlanoController planoCon = new PlanoController();
+        for (int i = 0; i < planoCon.listarPlanos().size(); i++){
+            plano.addItem(planoCon.listarPlanos().get(i).getNome());
+        }
 
-        labelInstrutor = new JLabel("Instrutor do Aluno");
+        labelInstrutor = new JLabel("Instrutor do Aluno *");
         instrutor = new JComboBox();
-        instrutor.addItem("Instrutor 1");
-        instrutor.addItem("Instrutor 2");
+        InstrutorController instrutorCon = new InstrutorController();
+        for (int i = 0; i < instrutorCon.listarInstrutores().size(); i++){
+            instrutor.addItem(instrutorCon.listarInstrutores().get(i).getNome());
+        }
 
-        labelStatus = new JLabel("Status do Aluno");
+        labelStatus = new JLabel("Status do Aluno *");
         status = new JComboBox();
         status.addItem("Ativo");
         status.addItem("Inativo");

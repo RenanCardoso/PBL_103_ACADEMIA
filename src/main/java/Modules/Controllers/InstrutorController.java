@@ -60,6 +60,19 @@ public class InstrutorController {
         dao.remove(instrutorExisteDelete);
     }
 
+    public Integer formatarIndiceInstrutor(JComboBox comboinstrutor) throws SQLException {
 
+        Integer indiceComboboxSelecionado = comboinstrutor.getSelectedIndex();
+        Integer idInstrutorSelecionado = null;
+        InstrutorController instrutorCon = new InstrutorController();
+
+        for (int i = 0; i < instrutorCon.listarInstrutores().size(); i++) {
+            if (indiceComboboxSelecionado == i) {
+                idInstrutorSelecionado = instrutorCon.listarInstrutores().get(i).getId();
+            }
+        }
+
+        return idInstrutorSelecionado;
+    }
 
 }

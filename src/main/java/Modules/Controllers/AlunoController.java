@@ -12,6 +12,7 @@ public class AlunoController {
 
     //aqui vou criar o meu ModelsDAO.AlunoDAO
     AlunoDAO dao = new AlunoDAO();
+    AlunoController alunoCon;
 
     public Aluno buscarAlunoporID(Aluno aluno, Integer id) throws SQLException {
         aluno = dao.findById(id);
@@ -59,6 +60,20 @@ public class AlunoController {
          * e o segundo é o novo dado (uma instância nova)
          */
         dao.remove(alunoExisteDelete);
+    }
+
+    public Integer formatarIndiceAluno(JComboBox combobox) throws SQLException {
+
+        Integer indiceComboboxSelecionado = combobox.getSelectedIndex();
+        Integer idAlunoSelecionado = null;
+
+        for (int i = 0; i < alunoCon.listarAlunos().size(); i++) {
+            if (indiceComboboxSelecionado == i) {
+                idAlunoSelecionado = alunoCon.listarAlunos().get(i).getId();
+            }
+        }
+
+        return idAlunoSelecionado;
     }
 
 }
