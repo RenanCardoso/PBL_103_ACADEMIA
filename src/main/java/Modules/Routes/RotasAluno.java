@@ -4,6 +4,7 @@ import Modules.Controllers.AlunoController;
 import Modules.Controllers.InstrutorController;
 import Modules.Controllers.PlanoController;
 import Modules.FormatterFields.FormatterField;
+import Modules.Validators.ValidaAluno;
 import Views.Aluno.ViewAdicionarAluno;
 import Views.Aluno.ViewAlterarAluno;
 import Views.Aluno.ViewAluno;
@@ -19,6 +20,7 @@ import java.text.ParseException;
 public class RotasAluno implements ActionListener {
 
     private static JTextField txtnome;
+    private static JLabel labelNome;
     private static JTextField txtcpf;
     private static JTextField txtrg;
     private static JTextField txtidade;
@@ -42,7 +44,7 @@ public class RotasAluno implements ActionListener {
     InstrutorController instrutorCon = new InstrutorController();
     PlanoController planoCon = new PlanoController();
 
-//    construtor para voltar para tela principal de gerenciar alunos
+    //    construtor para voltar para tela principal de gerenciar alunos
     public RotasAluno(JButton btnAcao, JFrame frame){
         this.btnOpcao = btnAcao;
 
@@ -50,11 +52,12 @@ public class RotasAluno implements ActionListener {
     }
 
     //    construtor para adicionar aluno com somente os campos obrigatórios
-    public RotasAluno(JButton opcao, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JComboBox status, JComboBox planos, JComboBox instrutores){
+    public RotasAluno(JButton opcao, JFrame frame, JTextField nome, JLabel labelNome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JComboBox status, JComboBox planos, JComboBox instrutores){
         this.btnOpcao = opcao;
         this.comboinstrutor = instrutores;
         this.comboplano = planos;
         this.txtnome = nome;
+        this.labelNome = labelNome;
         this.txtcpf = cpf;
         this.txtrg = rg;
         this.txtidade = idade;
@@ -104,7 +107,10 @@ public class RotasAluno implements ActionListener {
                 break;
             case "adicionarAluno":
                 try {
-                    if (txtnome.getText().length() > 0) {
+
+                    ValidaAluno validarCampo = new ValidaAluno();
+
+                    if (!validarCampo.validarTxt(txtnome, labelNome)){
 
                         int idade = Integer.parseInt(txtidade.getText());
                         cpfFormatado = formatar.formatarCPF(txtcpf);
@@ -118,12 +124,11 @@ public class RotasAluno implements ActionListener {
                             statusFormatado = "ina";
                         }
 
-                        alunoCon.adicionarAluno(txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, statusFormatado, idPlanoSelecionado, idInstrutorSelecionado);
-                        JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
-                        new ViewAluno();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Nome do aluno é obrigatório");
-                    }
+                    alunoCon.adicionarAluno(txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, statusFormatado, idPlanoSelecionado, idInstrutorSelecionado);
+                    JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
+                    new ViewAluno();
+                }
+
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

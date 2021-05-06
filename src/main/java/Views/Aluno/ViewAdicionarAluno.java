@@ -143,7 +143,7 @@ public class ViewAdicionarAluno {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos, vou salvar somente os campos obrigatórios
-        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, cpf, rg, idade, numPrincipal, status, plano, instrutor)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, labelNome, cpf, rg, idade, numPrincipal, status, plano, instrutor)); //a partir daqui a Controller passará a assumir
 //        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAluno(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuPrinc.addActionListener(new RotasAluno(btnVoltarMenuPrinc, frame)); //a partir daqui a Controller passará a assumir
