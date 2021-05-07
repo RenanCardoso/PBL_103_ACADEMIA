@@ -20,13 +20,11 @@ public class AlunoController {
     }
 
     public void listarAlunosComTabela(DefaultTableModel modelo) throws SQLException {
-        //tem que fazer um cast indicando que vou utilizar de fato uma lista
-        ArrayList<Aluno> data = (ArrayList<Aluno>) dao.findAll();
 
         modelo.setNumRows(0);
 
         for (Aluno a : dao.findAll()) {
-            modelo.addRow(new Object[]{a.getId(), a.getNome()});
+            modelo.addRow(new Object[]{a.getId(), a.getNome(), a.getCpf(), a.getRg(), a.getEmail(), a.getNumPrincipal(), a.getNumSecundario(), a.getIdade(), a.getAltura(), a.getPeso(), a.getInstrutorDoAluno(), a.getTreinoDoAluno(), a.getPlanoDoAluno(), a.getStatus()});
         }
     }
 
@@ -37,19 +35,19 @@ public class AlunoController {
         return listaAlunos;
     }
 
-    public void adicionarAluno(String nome, String cpf, String rg, Integer idade, String numcelular, String status, Integer idplano, Integer idinstrutor) throws SQLException {
+    public void adicionarAluno(String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, String status, Integer idplano, Integer idinstrutor, Integer idtreino, String email, String altura, String peso) throws SQLException {
         //aqui faço a inserção
-        dao.insert(new Aluno(nome, cpf, rg, idade, numcelular, status, idplano, idinstrutor));
+        dao.insert(new Aluno(nome, cpf, rg, idade, numcelular, numcelularopc, status, idplano, idinstrutor, idtreino, email, altura, peso));
         JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
 //        System.out.println("Aluno adicionado com sucesso");
     }
 
-    public void editarAluno(Integer idAlunoAntigo, String novoNomeAluno) throws SQLException {
+    public void editarAluno(Integer idAlunoAntigo, String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, Integer idplano, Integer idinstrutor, Integer idtreino, String email, String altura, String peso, String status) throws SQLException {
         /* o meu dao.update espera dois argumentos, o primeiro é o antigo dado(clienteExists)
          * e o segundo é o novo dado (uma instância nova)
          */
 
-        Aluno novoAluno = new Aluno(idAlunoAntigo, novoNomeAluno); //criei a instância do objeto passando o nome que o usuário acabou de inserir
+        Aluno novoAluno = new Aluno(idAlunoAntigo, nome, cpf, rg, idade, numcelular, numcelularopc, idplano, idinstrutor, idtreino, email, altura, peso, status); //criei a instância do objeto passando o nome que o usuário acabou de inserir
         dao.update(idAlunoAntigo, novoAluno);
         JOptionPane.showMessageDialog(null, "Aluno alterado com sucesso");
 //        System.out.println("Aluno alterado com sucesso");

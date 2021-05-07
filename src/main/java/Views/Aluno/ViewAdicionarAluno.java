@@ -2,6 +2,7 @@ package Views.Aluno;
 
 import Modules.Controllers.InstrutorController;
 import Modules.Controllers.PlanoController;
+import Modules.Controllers.TreinoController;
 import Modules.Routes.RotasAluno;
 
 import javax.swing.*;
@@ -91,7 +92,7 @@ public class ViewAdicionarAluno {
         labelAltura = new JLabel("Altura do Aluno");
         altura = new JFormattedTextField(new MaskFormatter("#,##"));
         labelPeso = new JLabel("Peso do Aluno");
-        peso = new JFormattedTextField(new MaskFormatter("###,##"));
+        peso = new JFormattedTextField(new MaskFormatter("##"));
 
         labelPlano = new JLabel("Plano do Aluno *");
         plano = new JComboBox();
@@ -105,6 +106,13 @@ public class ViewAdicionarAluno {
         InstrutorController instrutorCon = new InstrutorController();
         for (int i = 0; i < instrutorCon.listarInstrutores().size(); i++){
             instrutor.addItem(instrutorCon.listarInstrutores().get(i).getNome());
+        }
+
+        labelfichaTreino = new JLabel("Ficha de treino do Aluno *");
+        fichaTreino = new JComboBox();
+        TreinoController treinoCon = new TreinoController();
+        for (int i = 0; i < treinoCon.listarTreinos().size(); i++){
+            fichaTreino.addItem(treinoCon.listarTreinos().get(i).getNome());
         }
 
         labelStatus = new JLabel("Status do Aluno *");
@@ -134,6 +142,8 @@ public class ViewAdicionarAluno {
         frame.add(plano);
         frame.add(labelInstrutor);
         frame.add(instrutor);
+        frame.add(labelfichaTreino);
+        frame.add(fichaTreino);
         frame.add(labelPeso);
         frame.add(peso);
 
@@ -142,9 +152,8 @@ public class ViewAdicionarAluno {
         frame.add(btnVoltarMenuPrinc);
         frame.add(btnAcao);
 
-//        aqui vou trabalhar com meus eventos, vou salvar somente os campos obrigatórios
-        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, labelNome, cpf, rg, idade, numPrincipal, status, plano, instrutor)); //a partir daqui a Controller passará a assumir
-//        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
+//        aqui vou trabalhar com meus eventos
+        btnSalvar.addActionListener(new RotasAluno(btnSalvar, frame, nome, cpf, rg, idade, numPrincipal, numSecundario, status, plano, instrutor, fichaTreino, email, altura, peso)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAluno(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuPrinc.addActionListener(new RotasAluno(btnVoltarMenuPrinc, frame)); //a partir daqui a Controller passará a assumir
 

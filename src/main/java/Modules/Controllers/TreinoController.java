@@ -60,6 +60,20 @@ public class TreinoController {
         dao.remove(idTreinoExisteDelete);
     }
 
+    public Integer formatarIndiceTreino(JComboBox combotreino) throws SQLException {
 
+        Integer indiceComboboxSelecionado = combotreino.getSelectedIndex();
+        Integer idTreinoSelecionado = null;
+        TreinoController treinoCon = new TreinoController();
+
+        for (int i = 0; i < treinoCon.listarTreinos().size(); i++) {
+
+            if (indiceComboboxSelecionado == i) {
+                idTreinoSelecionado = treinoCon.listarTreinos().get(i).getId();
+            }
+        }
+
+        return idTreinoSelecionado;
+    }
 
 }

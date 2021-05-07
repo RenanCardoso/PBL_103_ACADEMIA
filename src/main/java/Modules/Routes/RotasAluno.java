@@ -3,8 +3,8 @@ package Modules.Routes;
 import Modules.Controllers.AlunoController;
 import Modules.Controllers.InstrutorController;
 import Modules.Controllers.PlanoController;
+import Modules.Controllers.TreinoController;
 import Modules.FormatterFields.FormatterField;
-import Modules.Validators.ValidaAluno;
 import Views.Aluno.ViewAdicionarAluno;
 import Views.Aluno.ViewAlterarAluno;
 import Views.Aluno.ViewAluno;
@@ -20,13 +20,13 @@ import java.text.ParseException;
 public class RotasAluno implements ActionListener {
 
     private static JTextField txtnome;
-    private static JLabel labelNome;
     private static JTextField txtcpf;
     private static JTextField txtrg;
     private static JTextField txtidade;
     private static JTextField txtemail;
     private static JTextField txtnumPrincipal;
     private static JTextField txtnumSecundario;
+    private JComboBox comboaluno = new JComboBox();
     private JComboBox comboinstrutor = new JComboBox();
     private JComboBox comboplano = new JComboBox();
     private JComboBox combofichatreino = new JComboBox();
@@ -34,15 +34,17 @@ public class RotasAluno implements ActionListener {
     private static JTextField txtaltura;
     private static JTextField txtpeso;
     private JButton btnOpcao;
-    private JComboBox combobox = new JComboBox();
 
+    private static Integer idAluno;
     private static String cpfFormatado;
     private static String numPrincipalFormatado;
+    private static String numSecundarioFormatado;
     private static String statusFormatado;
 
     AlunoController alunoCon = new AlunoController();
     InstrutorController instrutorCon = new InstrutorController();
     PlanoController planoCon = new PlanoController();
+    TreinoController treinoCon = new TreinoController();
 
     //    construtor para voltar para tela principal de gerenciar alunos
     public RotasAluno(JButton btnAcao, JFrame frame){
@@ -51,34 +53,52 @@ public class RotasAluno implements ActionListener {
         frame.dispose();
     }
 
-    //    construtor para adicionar aluno com somente os campos obrigatórios
-    public RotasAluno(JButton opcao, JFrame frame, JTextField nome, JLabel labelNome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JComboBox status, JComboBox planos, JComboBox instrutores){
-        this.btnOpcao = opcao;
-        this.comboinstrutor = instrutores;
-        this.comboplano = planos;
+    //    construtor para adicionar aluno com todos os campos
+    public RotasAluno(JButton btnSalvar, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JTextField numSecundario, JComboBox status, JComboBox plano, JComboBox instrutor, JComboBox fichaTreino, JTextField email, JTextField altura, JTextField peso) {
+        this.btnOpcao = btnSalvar;
+        this.comboinstrutor = instrutor;
+        this.comboplano = plano;
+        this.combofichatreino = fichaTreino;
         this.txtnome = nome;
-        this.labelNome = labelNome;
+        this.txtemail = email;
         this.txtcpf = cpf;
         this.txtrg = rg;
         this.txtidade = idade;
+        this.txtaltura = altura;
+        this.txtpeso = peso;
         this.txtnumPrincipal = numPrincipal;
+        this.txtnumSecundario = numSecundario;
         this.combostatus = status;
         frame.dispose();
     }
 
     //    construtor para editar aluno
-    public RotasAluno(JButton opcao, JFrame frame, JTextField txtnome, JComboBox combobox){
-        this.btnOpcao = opcao;
-        this.combobox = combobox;
-        this.txtnome = txtnome;
+    public RotasAluno(JButton btnSalvar, JComboBox aluno, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JTextField numSecundario, JComboBox status, JComboBox plano, JComboBox instrutor, JComboBox fichaTreino, JTextField email, JTextField altura, JTextField peso) {
+
+        this.btnOpcao = btnSalvar;
+        this.comboaluno = aluno;
+        this.comboinstrutor = instrutor;
+        this.comboplano = plano;
+        this.combofichatreino = fichaTreino;
+        this.txtnome = nome;
+        this.txtemail = email;
+        this.txtcpf = cpf;
+        this.txtrg = rg;
+        this.txtidade = idade;
+        this.txtaltura = altura;
+        this.txtpeso = peso;
+        this.txtnumPrincipal = numPrincipal;
+        this.txtnumSecundario = numSecundario;
+        this.combostatus = status;
+        frame.dispose();
 
         frame.dispose();
     }
 
-    //    construtor para remover aluno
-    public RotasAluno(JButton opcao, JFrame frame, JComboBox combobox){
+    //    construtor para alterar e remover aluno
+    public RotasAluno(JButton opcao, JFrame frame, JComboBox comboaluno){
         this.btnOpcao = opcao;
-        this.combobox = combobox;
+        this.comboaluno = comboaluno;
 
         frame.dispose();
     }
@@ -88,7 +108,6 @@ public class RotasAluno implements ActionListener {
 
         String btnOpcao = this.btnOpcao.getActionCommand();
         FormatterField formatar = new FormatterField();
-
 
         switch (btnOpcao) {
             case "verTelaAlunos":
@@ -108,58 +127,58 @@ public class RotasAluno implements ActionListener {
             case "adicionarAluno":
                 try {
 
-                    ValidaAluno validarCampo = new ValidaAluno();
+                    int idade = Integer.parseInt(txtidade.getText());
+                    cpfFormatado = formatar.formatarCPF(txtcpf);
+                    numPrincipalFormatado = formatar.formatarCelular(txtnumPrincipal);
+                    numSecundarioFormatado = formatar.formatarCelular(txtnumPrincipal);
+                    statusFormatado = combostatus.getSelectedItem().toString();
+                    Integer idPlanoSelecionado = planoCon.formatarIndicePlano(comboplano);
+                    Integer idInstrutorSelecionado = instrutorCon.formatarIndiceInstrutor(comboinstrutor);
+                    Integer idTreinoSelecionado = treinoCon.formatarIndiceTreino(combofichatreino);
 
-                    if (!validarCampo.validarTxt(txtnome, labelNome)){
+                    if (statusFormatado == "Ativo"){
+                        statusFormatado = "ati";
+                    } else {
+                        statusFormatado = "ina";
+                    }
 
-                        int idade = Integer.parseInt(txtidade.getText());
-                        cpfFormatado = formatar.formatarCPF(txtcpf);
-                        numPrincipalFormatado = formatar.formatarCelular(txtnumPrincipal);
-                        statusFormatado = combostatus.getSelectedItem().toString();
-                        Integer idPlanoSelecionado = planoCon.formatarIndicePlano(comboplano);
-                        Integer idInstrutorSelecionado = instrutorCon.formatarIndiceInstrutor(comboinstrutor);
-                        if (statusFormatado == "Ativo"){
-                            statusFormatado = "ati";
-                        } else {
-                            statusFormatado = "ina";
-                        }
-
-                    alunoCon.adicionarAluno(txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, statusFormatado, idPlanoSelecionado, idInstrutorSelecionado);
+                    alunoCon.adicionarAluno(txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, statusFormatado, idPlanoSelecionado, idInstrutorSelecionado, idTreinoSelecionado, txtemail.getText(), txtaltura.getText(), txtpeso.getText());
                     JOptionPane.showMessageDialog(null, "Aluno adicionado com sucesso");
                     new ViewAluno();
-                }
-
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
             case "verTelaAlterarAlunos":
                 try {
-                    new ViewAlterarAluno();
-                } catch (SQLException throwables) {
+                    new ViewAlterarAluno(comboaluno.getSelectedIndex());
+                } catch (SQLException | ParseException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
             case "alterarAluno":
-                if (txtnome.getText().length() > 0) {
-                    try {
-                        Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
-                        Integer idAlunoSelecionado = null;
+                try {
+                    int idade = Integer.parseInt(txtidade.getText());
+                    cpfFormatado = formatar.formatarCPF(txtcpf);
+                    numPrincipalFormatado = formatar.formatarCelular(txtnumPrincipal);
+                    numSecundarioFormatado = formatar.formatarCelular(txtnumPrincipal);
+                    statusFormatado = combostatus.getSelectedItem().toString();
+                    Integer idPlanoSelecionado = planoCon.formatarIndicePlano(comboplano);
+                    Integer idInstrutorSelecionado = instrutorCon.formatarIndiceInstrutor(comboinstrutor);
+                    Integer idTreinoSelecionado = treinoCon.formatarIndiceTreino(combofichatreino);
 
-                        for (int i = 0; i < alunoCon.listarAlunos().size(); i++) {
-                            if (indiceComboboxSelecionado == i) {
-                                idAlunoSelecionado = alunoCon.listarAlunos().get(i).getId();
-                            }
-                        }
-
-                        alunoCon.editarAluno(idAlunoSelecionado, txtnome.getText());
-                        JOptionPane.showMessageDialog(null, "Aluno alterado com sucesso");
-                        new ViewAluno();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
+                    if (statusFormatado == "Ativo"){
+                        statusFormatado = "ati";
+                    } else {
+                        statusFormatado = "ina";
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Nome do aluno é obrigatório");
+
+                    alunoCon.editarAluno(alunoCon.listarAlunos().get(comboaluno.getSelectedIndex()).getId(), txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, idPlanoSelecionado, idInstrutorSelecionado, idTreinoSelecionado, txtemail.getText(), txtaltura.getText(), txtpeso.getText(), statusFormatado);
+
+                    JOptionPane.showMessageDialog(null, "Aluno alterado com sucesso");
+                    new ViewAluno();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
                 break;
             case "verTelaRemoverAluno":
@@ -173,7 +192,7 @@ public class RotasAluno implements ActionListener {
                 try {
                     if (alunoCon.listarAlunos().size() > 0) {
                         try {
-                            Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
+                            Integer indiceComboboxSelecionado = this.comboaluno.getSelectedIndex();
                             Integer idAlunoSelecionado = null;
 
                             for (int i = 0; i < alunoCon.listarAlunos().size(); i++) {
@@ -182,7 +201,7 @@ public class RotasAluno implements ActionListener {
                                 }
                             }
 
-                            String nomeTemp = this.combobox.getSelectedItem().toString();
+                            String nomeTemp = this.comboaluno.getSelectedItem().toString();
                             alunoCon.removerAluno(idAlunoSelecionado);
                             JOptionPane.showMessageDialog(null, "Aluno " + nomeTemp + " removido com sucesso!");
                             new ViewRemoverAluno();

@@ -47,7 +47,6 @@ public class ViewRemoverAluno {
             combobox.addItem(alunoCon.listarAlunos().get(i).getNome());
         }
 
-
         frame.add(panel);
         frame.add(combobox);
         frame.add(btnSalvar);

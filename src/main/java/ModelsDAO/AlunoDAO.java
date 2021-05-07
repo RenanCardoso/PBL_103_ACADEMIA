@@ -11,6 +11,7 @@ package ModelsDAO;/* geralmente você tem um DAO pra cada model que você cria, 
 
 import Models.Aluno;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class AlunoDAO extends DAO {
              * pra percorrer essa lista e posso adicionar dentro da minha lista alunos
              */
             while (res.next()) {
-                alunos.add(new Aluno(res.getInt("idaluno"), res.getString("nome")));
+                    alunos.add(new Aluno(res.getInt("idaluno"), res.getString("nome"), res.getString("cpf"), res.getString("rg"), res.getInt("idade"), res.getString("numprincipal"), res.getString("numsecundario"), res.getInt("idplano"), res.getInt("idinstrutor"), res.getInt("idtreino"), res.getString("email"), res.getString("altura"), res.getString("peso"), res.getString("status")));
             }
         }
 
@@ -104,11 +105,10 @@ public class AlunoDAO extends DAO {
      */
     public void insert(Aluno aluno) throws SQLException {
         //lembrando que o id já está como autoincrement
-        String query = "INSERT INTO aluno (nome, cpf, rg, idade, numprincipal, status, idplano, idinstrutor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO aluno (nome, cpf, rg, idade, numprincipal, numsecundario, status, idplano, idinstrutor, idtreino, email, altura, peso) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         //mais uma vez vamos usar o PreparedStatement e agora de fato vamos usar ele como deve ser utilizado
         statement = connection.prepareStatement(query);
-
 
         //no lugar da interrogação eu vou passar os dados de forma dinâmica em runtime, para fazer isso:
         statement.setString(1, aluno.getNome()); //capturo através do meu getName
@@ -116,12 +116,17 @@ public class AlunoDAO extends DAO {
          * interrogação então eu sei que é na minha primeira posição e o que eu desejo inserir
          */
         statement.setString(2, aluno.getCpf()); //capturo através do meu getName
-        statement.setString(3, aluno.getRg()); //capturo através do meu getName
-        statement.setInt(4, aluno.getIdade()); //capturo através do meu getName
-        statement.setString(5, aluno.getNumPrincipal()); //capturo através do meu getName
-        statement.setString(6, aluno.getStatus()); //capturo através do meu getName
-        statement.setInt(7, aluno.getPlanoDoAluno()); //capturo através do meu getName
-        statement.setInt(8, aluno.getInstrutorDoAluno()); //capturo através do meu getName
+        statement.setString(3, aluno.getRg());
+        statement.setInt(4, aluno.getIdade());
+        statement.setString(5, aluno.getNumPrincipal());
+        statement.setString(6, aluno.getNumSecundario());
+        statement.setString(7, aluno.getStatus());
+        statement.setInt(8, aluno.getPlanoDoAluno());
+        statement.setInt(9, aluno.getInstrutorDoAluno());
+        statement.setInt(10, aluno.getTreinoDoAluno());
+        statement.setString(11, aluno.getEmail());
+        statement.setString(12, aluno.getAltura());
+        statement.setString(13, aluno.getPeso());
 
         //por fim, mando executar o meu PreparedStatement (executar a minha ação)
         statement.execute();
@@ -140,14 +145,27 @@ public class AlunoDAO extends DAO {
         /* vamos indicar o que eu quero fazer no update, neste caso só temos o nosso name onde vamos
          * receber o dado de maneira dinâmica (usando a interrogação) e o id será um dado dinâmico também
          */
-        String query = "UPDATE aluno SET nome = ? WHERE idaluno = ?";
-
+        String query = "UPDATE aluno SET nome = ?, cpf = ?, rg = ?, idade = ?, numprincipal = ?, numsecundario = ?, status = ?, idplano = ?, idinstrutor = ?, idtreino = ?, email = ?, altura = ?, peso = ? WHERE idaluno = ?";
 
         statement = connection.prepareStatement(query);
 
+        JOptionPane.showMessageDialog(null, "ID do aluno antigo: " + alunoNew.getId());
+
         //seto meus valores
         statement.setString(1, alunoNew.getNome());
-        statement.setInt(2, alunoNew.getId());
+        statement.setString(2, alunoNew.getCpf()); //capturo através do meu getName
+        statement.setString(3, alunoNew.getRg());
+        statement.setInt(4, alunoNew.getIdade());
+        statement.setString(5, alunoNew.getNumPrincipal());
+        statement.setString(6, alunoNew.getNumSecundario());
+        statement.setString(7, alunoNew.getStatus());
+        statement.setInt(8, alunoNew.getPlanoDoAluno());
+        statement.setInt(9, alunoNew.getInstrutorDoAluno());
+        statement.setInt(10, alunoNew.getTreinoDoAluno());
+        statement.setString(11, alunoNew.getEmail());
+        statement.setString(12, alunoNew.getAltura());
+        statement.setString(13, alunoNew.getPeso());
+        statement.setInt(14, alunoNew.getId());
         statement.execute();
     }
 

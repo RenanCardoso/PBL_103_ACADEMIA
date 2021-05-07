@@ -6,12 +6,12 @@ public class Aluno extends Pessoa {
      * criar da minha Models.Aluno vai ser um novo registro que vou gerar dentro do meu banco de dados na tabela movie
      */
 
-    float peso;
-    float altura;
-    float imc;
-    Integer idinstrutor;
-    Integer idplano;
-    Integer idfichatreino;
+    private String peso;
+    private String altura;
+    private float imc;
+    private Integer idinstrutor;
+    private Integer idplano;
+    private Integer idfichatreino;
 //    String senha;
 
     //construtor
@@ -26,7 +26,8 @@ public class Aluno extends Pessoa {
         this.nome = nome;
     }
 
-    public Aluno(float peso, float altura, float imc, Integer idinstrutor, Integer idplano, Integer idfichatreino, Integer id, String nome, String cpf, String rg, Integer idade, String email, String numcelular, String numcelularopc, String status) {
+    public Aluno(Integer id, String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, Integer idplano, Integer idinstrutor, Integer idfichatreino, String email, String altura, String peso, String status) {
+        this.id = id;
         this.peso = peso;
         this.altura = altura;
         this.imc = imc;
@@ -44,15 +45,21 @@ public class Aluno extends Pessoa {
         this.status = status;
     }
 
-    public Aluno(String nome, String cpf, String rg, Integer idade, String numcelular, String status, Integer idplano, Integer idinstrutor) {
+    public Aluno(String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, String status, Integer idplano, Integer idinstrutor, Integer idfichatreino, String email, String altura, String peso) {
+        this.peso = peso;
+        this.altura = altura;
+        this.imc = imc;
+        this.idinstrutor = idinstrutor;
+        this.idplano = idplano;
+        this.idfichatreino = idfichatreino;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.idade = idade;
-        this.status = status;
+        this.email = email;
         this.numcelular = numcelular;
-        this.idplano = idplano;
-        this.idinstrutor = idinstrutor;
+        this.numcelularopc = numcelularopc;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -83,13 +90,30 @@ public class Aluno extends Pessoa {
     public String getNumPrincipal() {
         return numcelular;
     }
+    public String getNumSecundario() {
+        return numcelularopc;
+    }
     public String getStatus() {
         return status;
     }
+    public String getEmail() {
+        return email;
+    }
+    public String getAltura() {
+        return altura;
+    }
+    public String getPeso() {
+        return peso;
+    }
+
     public Integer getPlanoDoAluno() {
         return idplano;
     }
     public Integer getInstrutorDoAluno() {
         return idinstrutor;
+    }
+
+    public Integer getTreinoDoAluno() {
+        return idfichatreino;
     }
 }
