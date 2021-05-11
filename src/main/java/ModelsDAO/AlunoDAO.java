@@ -149,8 +149,6 @@ public class AlunoDAO extends DAO {
 
         statement = connection.prepareStatement(query);
 
-        JOptionPane.showMessageDialog(null, "ID do aluno antigo: " + alunoNew.getId());
-
         //seto meus valores
         statement.setString(1, alunoNew.getNome());
         statement.setString(2, alunoNew.getCpf()); //capturo através do meu getName
