@@ -5,7 +5,6 @@ import Views.Aparelho.ViewAdicionarAparelho;
 import Views.Aparelho.ViewAlterarAparelho;
 import Views.Aparelho.ViewAparelho;
 import Views.Aparelho.ViewRemoverAparelho;
-import Views.Instrutor.ViewInstrutores;
 import Views.MenuPrincipalView;
 
 import javax.swing.*;
@@ -79,7 +78,7 @@ public class RotasAparelho implements ActionListener {
                     }
                     try {
                         JOptionPane.showMessageDialog(null, "Aparelho adicionado com sucesso");
-                        new ViewInstrutores();
+                        new ViewAparelho();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -109,7 +108,7 @@ public class RotasAparelho implements ActionListener {
                         aparelhoCon.editarAparelho(idAparelhoSelecionado, txtNome.getText());
                         JOptionPane.showMessageDialog(null, "Aparelho alterado com sucesso");
 
-                        new ViewInstrutores();
+                        new ViewAparelho();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

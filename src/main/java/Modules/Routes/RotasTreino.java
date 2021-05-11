@@ -1,7 +1,6 @@
 package Modules.Routes;
 
 import Modules.Controllers.TreinoController;
-import Views.Instrutor.ViewInstrutores;
 import Views.MenuPrincipalView;
 import Views.Treino.ViewAdicionarTreino;
 import Views.Treino.ViewAlterarTreino;
@@ -81,7 +80,7 @@ public class RotasTreino implements ActionListener {
                     }
                     try {
                         JOptionPane.showMessageDialog(null, "Treino adicionado com sucesso");
-                        new ViewInstrutores();
+                        new ViewTreino();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -111,7 +110,7 @@ public class RotasTreino implements ActionListener {
                         treinoCon.editarTreino(idTreinoSelecionado, txtNome.getText());
                         JOptionPane.showMessageDialog(null, "Treino alterado com sucesso");
 
-                        new ViewInstrutores();
+                        new ViewTreino();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }

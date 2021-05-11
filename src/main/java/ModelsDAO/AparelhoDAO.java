@@ -60,7 +60,7 @@ public class AparelhoDAO {
              * pra percorrer essa lista e posso adicionar dentro da minha lista aparelhos
              */
             while (res.next()) {
-                aparelhos.add(new Aparelho(res.getInt("idaparelho"), res.getString("nome")));
+                aparelhos.add(new Aparelho(res.getInt("idaparelho"), res.getString("nomeaparelho")));
             }
         }
 
@@ -92,7 +92,7 @@ public class AparelhoDAO {
         Aparelho aparelho = null;
         while (res.next()){
             //atribuo uma nova instância aqui dentro onde vou passar o meu id e o name do aparelho
-            aparelho = new Aparelho(res.getInt("idaparelho"), res.getString("nome"));
+            aparelho = new Aparelho(res.getInt("idaparelho"), res.getString("nomeaparelho"));
         }
 
         return aparelho;
@@ -109,7 +109,7 @@ public class AparelhoDAO {
      */
     public void insert(Aparelho aparelho) throws SQLException {
         //lembrando que o id já está como autoincrement
-        String query = "INSERT INTO aparelho (nome) VALUES (?)";
+        String query = "INSERT INTO aparelho (nomeaparelho) VALUES (?)";
 
         //mais uma vez vamos usar o PreparedStatement e agora de fato vamos usar ele como deve ser utilizado
         statement = connection.prepareStatement(query);
@@ -138,7 +138,7 @@ public class AparelhoDAO {
         /* vamos indicar o que eu quero fazer no update, neste caso só temos o nosso name onde vamos
          * receber o dado de maneira dinâmica (usando a interrogação) e o id será um dado dinâmico também
          */
-        String query = "UPDATE aparelho SET nome = ? WHERE idaparelho = ?";
+        String query = "UPDATE aparelho SET nomeaparelho = ? WHERE idaparelho = ?";
 
 
         statement = connection.prepareStatement(query);
