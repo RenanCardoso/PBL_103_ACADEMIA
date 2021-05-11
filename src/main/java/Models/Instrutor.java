@@ -14,6 +14,29 @@ public class Instrutor extends Pessoa {
         this.nome = nomeinstrutor;
     }
 
+    public Instrutor(String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, String status, String email) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.idade = idade;
+        this.email = email;
+        this.numcelular = numcelular;
+        this.numcelularopc = numcelularopc;
+        this.status = status;
+    }
+
+    public Instrutor(Integer id, String nome, String cpf, String rg, Integer idade, String numcelular, String numcelularopc, String status, String email) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.idade = idade;
+        this.email = email;
+        this.numcelular = numcelular;
+        this.numcelularopc = numcelularopc;
+        this.status = status;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -29,4 +52,24 @@ public class Instrutor extends Pessoa {
     public void setName(String nomeinstrutor) {
         this.nome = nomeinstrutor;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+    public String getRg() {
+        return rg;
+    }
+    public Integer getIdade() {
+        return idade;
+    }
+    public String getNumPrincipal() {
+        return numcelular;
+    }
+    public String getNumSecundario() {
+        return numcelularopc;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public String getEmail() { return email; }
 }

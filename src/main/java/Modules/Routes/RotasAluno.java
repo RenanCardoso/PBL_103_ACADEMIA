@@ -35,7 +35,6 @@ public class RotasAluno implements ActionListener {
     private static JTextField txtpeso;
     private JButton btnOpcao;
 
-    private static Integer idAluno;
     private static String cpfFormatado;
     private static String numPrincipalFormatado;
     private static String numSecundarioFormatado;
@@ -90,7 +89,6 @@ public class RotasAluno implements ActionListener {
         this.txtnumPrincipal = numPrincipal;
         this.txtnumSecundario = numSecundario;
         this.combostatus = status;
-        frame.dispose();
 
         frame.dispose();
     }

@@ -1,5 +1,6 @@
 package ModelsDAO;
 
+import Models.Aluno;
 import Models.Instrutor;
 
 import java.sql.*;
@@ -23,7 +24,7 @@ public class InstrutorDAO {
         statement = connection.prepareStatement(query);
         try (ResultSet res = statement.executeQuery()) {
             while (res.next()) {
-                instrutores.add(new Instrutor(res.getInt("idinstrutor"), res.getString("nomeinstrutor")));
+                instrutores.add(new Instrutor(res.getInt("idinstrutor"), res.getString("nomeinstrutor"), res.getString("cpf"), res.getString("rg"), res.getInt("idade"), res.getString("numprincipal"), res.getString("numsecundario"), res.getString("email"), res.getString("status")));
             }
         }
 
@@ -53,19 +54,35 @@ public class InstrutorDAO {
     }
 
     public void insert(Instrutor instrutor) throws SQLException {
-        String query = "INSERT INTO instrutor (nomeinstrutor) VALUES (?)";
+        String query = "INSERT INTO instrutor (nomeinstrutor, cpf, rg, idade, numprincipal, numsecundario, status, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
         statement = connection.prepareStatement(query);
         statement.setString(1, instrutor.getNome()); //capturo através do meu getName
+        statement.setString(2, instrutor.getCpf()); //capturo através do meu getName
+        statement.setString(3, instrutor.getRg());
+        statement.setInt(4, instrutor.getIdade());
+        statement.setString(5, instrutor.getNumPrincipal());
+        statement.setString(6, instrutor.getNumSecundario());
+        statement.setString(7, instrutor.getStatus());
+        statement.setString(8, instrutor.getEmail());
         statement.execute();
     }
 
     public void update(Integer idInstrutorOld, Instrutor instrutorNew) throws SQLException {
-        String query = "UPDATE instrutor SET nomeinstrutor = ? WHERE idinstrutor = ?";
+        String query = "UPDATE instrutor SET nomeinstrutor = ?, cpf = ?, rg = ?, idade = ?, numprincipal = ?, numsecundario = ?, status = ?, email = ? WHERE idinstrutor = ?";
+
         statement = connection.prepareStatement(query);
 
         //seto meus valores
         statement.setString(1, instrutorNew.getNome());
-        statement.setInt(2, idInstrutorOld);
+        statement.setString(2, instrutorNew.getCpf()); //capturo através do meu getName
+        statement.setString(3, instrutorNew.getRg());
+        statement.setInt(4, instrutorNew.getIdade());
+        statement.setString(5, instrutorNew.getNumPrincipal());
+        statement.setString(6, instrutorNew.getNumSecundario());
+        statement.setString(7, instrutorNew.getStatus());
+        statement.setString(8, instrutorNew.getEmail());
+        statement.setInt(9, idInstrutorOld);
         statement.execute();
     }
 

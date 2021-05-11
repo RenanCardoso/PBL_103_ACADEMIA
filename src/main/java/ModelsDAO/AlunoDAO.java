@@ -163,7 +163,7 @@ public class AlunoDAO extends DAO {
         statement.setString(11, alunoNew.getEmail());
         statement.setString(12, alunoNew.getAltura());
         statement.setString(13, alunoNew.getPeso());
-        statement.setInt(14, alunoNew.getId());
+        statement.setInt(14, idAlunoAntigo);
         statement.execute();
     }
 
