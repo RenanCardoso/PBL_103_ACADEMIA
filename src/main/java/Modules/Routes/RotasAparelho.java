@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class RotasAparelho implements ActionListener {
 
@@ -67,7 +68,11 @@ public class RotasAparelho implements ActionListener {
                 }
                 break;
             case "verTelaAdicionarAparelho":
-                new ViewAdicionarAparelho();
+                try {
+                    new ViewAdicionarAparelho();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "adicionarAparelho":
                 if (txtNome.getText().length() > 0){
