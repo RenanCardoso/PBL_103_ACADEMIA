@@ -1,6 +1,9 @@
 package Modules.FormatterFields;
 
+import Views.Aparelho.ViewAparelho;
+
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class FormatterField {
     String campoFormatado;
@@ -24,4 +27,5 @@ public class FormatterField {
 
         return campoFormatado;
     }
+
 }

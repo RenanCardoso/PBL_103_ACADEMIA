@@ -109,26 +109,25 @@ public class AparelhoDAO {
      */
     public void insert(Aparelho aparelho) throws SQLException {
         //lembrando que o id já está como autoincrement
-        String query = "INSERT INTO aparelho (nomeaparelho, categoria, descricao, colunadepesokg, composicao, pesodoaparelho, pesosuportado, alturadoaparelho, larguradoaparelho, comprimentoaparelho, cor, obsaparelho) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO aparelho (nomeaparelho, categoria, descricao, colunadepesokg, composicao, pesoaparelho, pesosuportado, alturaaparelho, larguraaparelho, comprimentoaparelho, cor, obsaparelho, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         //mais uma vez vamos usar o PreparedStatement e agora de fato vamos usar ele como deve ser utilizado
         statement = connection.prepareStatement(query);
 
-
         //no lugar da interrogação eu vou passar os dados de forma dinâmica em runtime, para fazer isso:
-        statement.setString(1, aparelho.getNome()); //capturo através do meu getName
-        statement.setString(2, aparelho.getCategoria()); //capturo através do meu getName
-        statement.setString(3, aparelho.getDescricao()); //capturo através do meu getName
-        statement.setInt(4, aparelho.getColunadepesokg()); //capturo através do meu getName
-        statement.setString(5, aparelho.getComposicao()); //capturo através do meu getName
-        statement.setInt(6, aparelho.getPesodoaparelho()); //capturo através do meu getName
-        statement.setInt(7, aparelho.getPesosuportado()); //capturo através do meu getName
-        statement.setString(8, aparelho.getAlturadoaparelho()); //capturo através do meu getName
-        statement.setString(9, aparelho.getLarguradoaparelho()); //capturo através do meu getName
-        statement.setString(10, aparelho.getComprimentoaparelho()); //capturo através do meu getName
-        statement.setString(11, aparelho.getCor()); //capturo através do meu getName
-        statement.setString(12, aparelho.getObsaparelho()); //capturo através do meu getName
-
+        statement.setString(1, aparelho.getNome());
+        statement.setString(2, aparelho.getCategoria());
+        statement.setString(3, aparelho.getDescricao());
+        statement.setInt(4, aparelho.getColunadepesokg());
+        statement.setString(5, aparelho.getComposicao());
+        statement.setInt(6, aparelho.getPesodoaparelho());
+        statement.setInt(7, aparelho.getPesosuportado());
+        statement.setString(8, aparelho.getAlturadoaparelho());
+        statement.setString(9, aparelho.getLarguradoaparelho());
+        statement.setString(10, aparelho.getComprimentoaparelho());
+        statement.setString(11, aparelho.getCor());
+        statement.setString(12, aparelho.getObsaparelho());
+        statement.setString(13, aparelho.getStatus());
 
         //por fim, mando executar o meu PreparedStatement (executar a minha ação)
         statement.execute();

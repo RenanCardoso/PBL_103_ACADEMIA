@@ -122,7 +122,6 @@ public class RotasInstrutor implements ActionListener {
                             statusFormatado = "ina";
                         }
 
-
                         instrutorCon.adicionarInstrutor(txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, statusFormatado, txtemail.getText());
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

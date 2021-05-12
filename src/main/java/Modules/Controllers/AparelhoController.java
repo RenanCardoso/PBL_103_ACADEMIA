@@ -36,9 +36,9 @@ public class AparelhoController {
         return listaAparelhos;
     }
 
-    public void adicionarAparelho(String nome) throws SQLException {
+    public void adicionarAparelho(String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, String alturadoaparelho, Integer pesosuportado, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) throws SQLException {
         //aqui faço a inserção
-        dao.insert(new Aparelho(nome));
+        dao.insert(new Aparelho(nomeaparelho, categoria, descricao, colunadepesokg, composicao, pesodoaparelho, pesosuportado, alturadoaparelho, larguradoaparelho, comprimentoaparelho, cor, obsaparelho, status));
         JOptionPane.showMessageDialog(null, "Aparelho adicionado com sucesso");
 //        System.out.println("Aparelho adicionado com sucesso");
     }

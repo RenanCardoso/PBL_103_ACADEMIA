@@ -15,6 +15,7 @@ public class Aparelho {
     private String comprimentoaparelho;
     private String cor;
     private String obsaparelho;
+    private String status;
 
     public Aparelho(){}
 
@@ -31,7 +32,8 @@ public class Aparelho {
         this.nomeaparelho = nomeaparelho;
     }
 
-    public Aparelho(Integer idaparelho, String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho) {
+//    construtor usado para adicionar
+    public Aparelho(Integer idaparelho, String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) {
         this.idaparelho = idaparelho;
         this.nomeaparelho = nomeaparelho;
         this.categoria = categoria;
@@ -45,6 +47,25 @@ public class Aparelho {
         this.comprimentoaparelho = comprimentoaparelho;
         this.cor = cor;
         this.obsaparelho = obsaparelho;
+        this.status = status;
+    }
+
+    //    construtor usado para editar
+    public Aparelho(String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) {
+        this.idaparelho = idaparelho;
+        this.nomeaparelho = nomeaparelho;
+        this.categoria = categoria;
+        this.descricao = descricao;
+        this.colunadepesokg = colunadepesokg;
+        this.composicao = composicao;
+        this.pesodoaparelho = pesodoaparelho;
+        this.pesosuportado = pesosuportado;
+        this.alturadoaparelho = alturadoaparelho;
+        this.larguradoaparelho = larguradoaparelho;
+        this.comprimentoaparelho = comprimentoaparelho;
+        this.cor = cor;
+        this.obsaparelho = obsaparelho;
+        this.status = status;
     }
 
     public Integer getIdaparelho() {
@@ -99,6 +120,10 @@ public class Aparelho {
         return obsaparelho;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     public void setIdaparelho(Integer idaparelho) {
         this.idaparelho = idaparelho;
     }
@@ -149,6 +174,10 @@ public class Aparelho {
 
     public void setObsaparelho(String obsaparelho) {
         this.obsaparelho = obsaparelho;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getId() {

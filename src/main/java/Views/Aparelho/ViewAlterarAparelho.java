@@ -62,8 +62,8 @@ public class ViewAlterarAparelho {
 
 //        aqui vou trabalhar com meus eventos
         btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, nome, combobox)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }

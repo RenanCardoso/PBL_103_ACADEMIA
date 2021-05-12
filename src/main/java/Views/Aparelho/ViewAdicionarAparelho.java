@@ -9,14 +9,14 @@ import java.text.ParseException;
 
 public class ViewAdicionarAparelho {
 
-    //    defino os componentes que serão utilizados
+//    defino os componentes que serão utilizados
     private static JFrame frame;
     private static JPanel panel;
     private static JButton btnAcao;
     private static JButton btnSalvar;
     private static JButton btnVoltarMenuUsuarios;
-    private static JTextField nome;
     private static JLabel labelNome;
+    private static JTextField nome;
     private static JLabel labelDescricao;
     private static JTextField descricao;
     private static JLabel labelCategoria;
@@ -118,7 +118,7 @@ public class ViewAdicionarAparelho {
         pesoSuportado = new JFormattedTextField(new MaskFormatter("##"));
         pesoSuportado.setColumns(20);
 
-        labelCor = new JLabel("Peso Suportado: ");
+        labelCor = new JLabel("Cor do Aparelho: ");
         cor = new JTextField(30);
 
         labelObsAparelho = new JLabel("Observação: ");
@@ -156,9 +156,9 @@ public class ViewAdicionarAparelho {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame, nome)); //a partir daqui a Controller passará a assumir
-        btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame, nome)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, nome, categoria, descricao, colunaDePesoKG, composicao, pesoDoAparelho, alturaDoAparelho, pesoSuportado, larguraDoAparelho, comprimentoDoAparelho, obsAparelho, cor, status)); //a partir daqui a Controller passará a assumir
+        btnAcao.addActionListener(new RotasAparelho(btnAcao, frame)); //a partir daqui a Controller passará a assumir
+        btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 
         frame.setVisible(true);
     }
