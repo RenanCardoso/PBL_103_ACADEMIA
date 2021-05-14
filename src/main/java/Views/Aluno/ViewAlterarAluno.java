@@ -137,7 +137,6 @@ public class ViewAlterarAluno {
         status.addItem("Ativo");
         status.addItem("Inativo");
 
-
 //        formulário
         frame.add(panel);
         frame.add(labelComboAluno);
@@ -164,6 +163,8 @@ public class ViewAlterarAluno {
         frame.add(instrutor);
         frame.add(labelfichaTreino);
         frame.add(fichaTreino);
+        frame.add(labelEmail);
+        frame.add(email);
         frame.add(labelPeso);
         frame.add(peso);
         frame.add(btnSalvar);

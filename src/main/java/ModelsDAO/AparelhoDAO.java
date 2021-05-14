@@ -142,18 +142,30 @@ public class AparelhoDAO {
     /* a parte de update eu posso ou não retornar dado. Tenho que primeiramente receber o meu dado antigo
      * e o meu dado novo que quero trabalhar
      */
-    public void update(Integer idAparelhoAntigo, Aparelho aparelhoNew) throws SQLException {
+    public void update(Integer idAparelhoAntigo, Aparelho aparelho) throws SQLException {
         /* vamos indicar o que eu quero fazer no update, neste caso só temos o nosso name onde vamos
          * receber o dado de maneira dinâmica (usando a interrogação) e o id será um dado dinâmico também
          */
-        String query = "UPDATE aparelho SET nomeaparelho = ? WHERE idaparelho = ?";
-
+        String query = "UPDATE aparelho SET nomeaparelho = ?, categoria = ?, descricao = ?, colunadepesokg = ?, composicao = ?, pesoaparelho = ?, pesosuportado = ?, alturaaparelho = ?, larguraaparelho = ?, comprimentoaparelho = ?, cor = ?, obsaparelho = ?, status = ? WHERE idaparelho = ?";
 
         statement = connection.prepareStatement(query);
 
         //seto meus valores
-        statement.setString(1, aparelhoNew.getNome());
-        statement.setInt(2, idAparelhoAntigo);
+        statement.setString(1, aparelho.getNome());
+        statement.setString(2, aparelho.getCategoria());
+        statement.setString(3, aparelho.getDescricao());
+        statement.setInt(4, aparelho.getColunadepesokg());
+        statement.setString(5, aparelho.getComposicao());
+        statement.setInt(6, aparelho.getPesodoaparelho());
+        statement.setInt(7, aparelho.getPesosuportado());
+        statement.setString(8, aparelho.getAlturadoaparelho());
+        statement.setString(9, aparelho.getLarguradoaparelho());
+        statement.setString(10, aparelho.getComprimentoaparelho());
+        statement.setString(11, aparelho.getCor());
+        statement.setString(12, aparelho.getObsaparelho());
+        statement.setString(13, aparelho.getStatus());
+        statement.setInt(14, idAparelhoAntigo);
+
         statement.execute();
     }
 

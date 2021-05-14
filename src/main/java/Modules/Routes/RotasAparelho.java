@@ -186,7 +186,7 @@ public class RotasAparelho implements ActionListener {
             case "verTelaAlterarAparelho":
                 try {
                     new ViewAlterarAparelho();
-                } catch (SQLException throwables) {
+                } catch (SQLException | ParseException throwables) {
                     throwables.printStackTrace();
                 }
                 break;

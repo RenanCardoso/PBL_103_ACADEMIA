@@ -32,13 +32,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Models/Aparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Aparelho.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ModelsDAO/AparelhoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ModelsDAO/AparelhoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Controllers/AparelhoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Controllers/AparelhoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/FormatterFields/FormatterField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/FormatterFields/FormatterField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasAparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasAparelho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasInstrutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasInstrutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAdicionarAparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAdicionarAparelho.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aluno/ViewAlterarAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aluno/ViewAlterarAluno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAlterarAparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAlterarAparelho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Modules/Routes/RotasInstrutor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Modules/Routes/RotasInstrutor.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

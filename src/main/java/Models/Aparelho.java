@@ -33,25 +33,24 @@ public class Aparelho {
     }
 
 //    construtor usado para adicionar
-    public Aparelho(Integer idaparelho, String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) {
-        this.idaparelho = idaparelho;
-        this.nomeaparelho = nomeaparelho;
-        this.categoria = categoria;
-        this.descricao = descricao;
-        this.colunadepesokg = colunadepesokg;
-        this.composicao = composicao;
-        this.pesodoaparelho = pesodoaparelho;
-        this.pesosuportado = pesosuportado;
-        this.alturadoaparelho = alturadoaparelho;
-        this.larguradoaparelho = larguradoaparelho;
-        this.comprimentoaparelho = comprimentoaparelho;
-        this.cor = cor;
-        this.obsaparelho = obsaparelho;
-        this.status = status;
-    }
+public Aparelho(String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) {
+    this.nomeaparelho = nomeaparelho;
+    this.categoria = categoria;
+    this.descricao = descricao;
+    this.colunadepesokg = colunadepesokg;
+    this.composicao = composicao;
+    this.pesodoaparelho = pesodoaparelho;
+    this.pesosuportado = pesosuportado;
+    this.alturadoaparelho = alturadoaparelho;
+    this.larguradoaparelho = larguradoaparelho;
+    this.comprimentoaparelho = comprimentoaparelho;
+    this.cor = cor;
+    this.obsaparelho = obsaparelho;
+    this.status = status;
+}
 
     //    construtor usado para editar
-    public Aparelho(String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) {
+    public Aparelho(Integer idaparelho, String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, Integer pesosuportado, String alturadoaparelho, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) {
         this.idaparelho = idaparelho;
         this.nomeaparelho = nomeaparelho;
         this.categoria = categoria;
