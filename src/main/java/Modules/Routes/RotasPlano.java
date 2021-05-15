@@ -11,12 +11,28 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class RotasPlano implements ActionListener {
 
     private JButton btnOpcao;
-    private JTextField txtNome;
-    private JComboBox combobox = new JComboBox();
+    private JTextField nome;
+    private JLabel labelNome;
+    private JComboBox duracao;
+    private JLabel labelDuracao;
+    private JTextField preco;
+    private JLabel labelPreco;
+    private JTextField limitePessoas;
+    private JLabel labelLimitePessoas;
+    private JComboBox flpromocao;
+    private JLabel labelFlpromocao;
+    private JTextField desconto;
+    private JLabel labelDesconto;
+    private JComboBox comboplano = new JComboBox();
+
+    private String duracaoFormatado;
+    private String promocaoFormatado;
+    private Integer indicePlanoSelecionado;
 
     PlanoController planoCon = new PlanoController();
 
@@ -28,26 +44,36 @@ public class RotasPlano implements ActionListener {
     }
 
     //    construtor para adicionar plano
-    public RotasPlano(JButton opcao, JFrame frame, JTextField txtNome){
+    public RotasPlano(JButton opcao, JFrame frame, JTextField nome, JComboBox duracao, JTextField preco, JTextField limitePessoas, JComboBox flpromocao, JTextField desconto){
         this.btnOpcao = opcao;
-        this.txtNome = txtNome;
+        this.nome = nome;
+        this.duracao = duracao;
+        this.preco = preco;
+        this.limitePessoas = limitePessoas;
+        this.flpromocao = flpromocao;
+        this.desconto = desconto;
 
         frame.dispose();
     }
 
     //    construtor para editar plano
-    public RotasPlano(JButton opcao, JFrame frame, JTextField txtNome, JComboBox combobox){
+    public RotasPlano(JButton opcao, JFrame frame, Integer indicePlanoSelecionado, JTextField nome, JComboBox duracao, JTextField preco, JTextField limitePessoas, JComboBox flpromocao, JTextField desconto){
+        this.indicePlanoSelecionado = indicePlanoSelecionado;
         this.btnOpcao = opcao;
-        this.combobox = combobox;
-        this.txtNome = txtNome;
+        this.nome = nome;
+        this.duracao = duracao;
+        this.preco = preco;
+        this.limitePessoas = limitePessoas;
+        this.flpromocao = flpromocao;
+        this.desconto = desconto;
 
         frame.dispose();
     }
 
     //    construtor para remover plano
-    public RotasPlano(JButton opcao, JFrame frame, JComboBox combobox){
+    public RotasPlano(JButton opcao, JFrame frame, JComboBox comboplano){
         this.btnOpcao = opcao;
-        this.combobox = combobox;
+        this.comboplano = comboplano;
 
         frame.dispose();
     }
@@ -69,14 +95,40 @@ public class RotasPlano implements ActionListener {
             case "verTelaAdicionarPlano":
                 try {
                     new ViewAdicionarPlano();
-                } catch (SQLException throwables) {
+                } catch (SQLException | ParseException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
             case "adicionarPlano":
-                if (txtNome.getText().length() > 0){
+                if (nome.getText().length() > 0){
                     try {
-                        planoCon.adicionarPlano(txtNome.getText());
+
+                        duracaoFormatado = duracao.getSelectedItem().toString();
+                        switch (duracaoFormatado) {
+
+                            case "Mensal":
+                                duracaoFormatado = "men";
+                                break;
+                            case "Trimestral":
+                                duracaoFormatado = "tri";
+                                break;
+                            case "Semestral":
+                                duracaoFormatado = "sem";
+                                break;
+                            case "Anual":
+                                duracaoFormatado = "anul";
+                                break;
+                            default:
+                        }
+
+                        promocaoFormatado = flpromocao.getSelectedItem().toString();
+                        String precoTemp = preco.getText().replace(",", ".");
+
+                        Float precoFormatado = Float.parseFloat(precoTemp);
+                        Integer limitePessoasFormatado = Integer.parseInt(limitePessoas.getText());
+                        Integer descontoFormatado = Integer.parseInt(desconto.getText());
+
+                        planoCon.adicionarPlano(nome.getText(), duracaoFormatado, precoFormatado, limitePessoasFormatado, promocaoFormatado, descontoFormatado);
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     }
@@ -92,24 +144,40 @@ public class RotasPlano implements ActionListener {
                 break;
             case "verTelaAlterarPlano":
                 try {
-                    new ViewAlterarPlano();
-                } catch (SQLException throwables) {
+                    new ViewAlterarPlano(comboplano.getSelectedIndex());
+                } catch (SQLException | ParseException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
             case "alterarPlano":
-                if (txtNome.getText().length() > 0) {
+                if (nome.getText().length() > 0) {
                     try {
-                        Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
-                        Integer idPlanoSelecionado = null;
+                        duracaoFormatado = duracao.getSelectedItem().toString();
+                        switch (duracaoFormatado) {
 
-                        for (int i = 0; i < planoCon.listarPlanos().size(); i++) {
-                            if (indiceComboboxSelecionado == i) {
-                                idPlanoSelecionado = planoCon.listarPlanos().get(i).getId();
-                            }
+                            case "Mensal":
+                                duracaoFormatado = "men";
+                                break;
+                            case "Trimestral":
+                                duracaoFormatado = "tri";
+                                break;
+                            case "Semestral":
+                                duracaoFormatado = "sem";
+                                break;
+                            case "Anual":
+                                duracaoFormatado = "anul";
+                                break;
+                            default:
                         }
 
-                        planoCon.editarPlano(idPlanoSelecionado, txtNome.getText());
+                        promocaoFormatado = flpromocao.getSelectedItem().toString();
+                        String precoTemp = preco.getText().replace(",", ".");
+
+                        Float precoFormatado = Float.parseFloat(precoTemp);
+                        Integer limitePessoasFormatado = Integer.parseInt(limitePessoas.getText());
+                        Integer descontoFormatado = Integer.parseInt(desconto.getText());
+
+                        planoCon.editarPlano(planoCon.listarPlanos().get(indicePlanoSelecionado).getId() , nome.getText(), duracaoFormatado, precoFormatado, limitePessoasFormatado, promocaoFormatado, descontoFormatado);
                         JOptionPane.showMessageDialog(null, "Plano alterado com sucesso");
 
                         new ViewPlano();
@@ -131,7 +199,7 @@ public class RotasPlano implements ActionListener {
                 try {
                     if (planoCon.listarPlanos().size() > 0) {
                         try {
-                            Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
+                            Integer indiceComboboxSelecionado = this.comboplano.getSelectedIndex();
                             Integer idPlanoSelecionado = null;
 
                             for (int i = 0; i < planoCon.listarPlanos().size(); i++) {
@@ -140,7 +208,7 @@ public class RotasPlano implements ActionListener {
                                 }
                             }
 
-                            String nomeTemp = this.combobox.getSelectedItem().toString();
+                            String nomeTemp = this.comboplano.getSelectedItem().toString();
                             planoCon.removerPlano(idPlanoSelecionado);
                             JOptionPane.showMessageDialog(null, "Plano " + nomeTemp + " removido com sucesso!");
                             new ViewPlano();

@@ -23,7 +23,7 @@ public class PlanoDAO {
         statement = connection.prepareStatement(query);
         try (ResultSet res = statement.executeQuery()) {
             while (res.next()) {
-                planos.add(new Plano(res.getInt("idplano"), res.getString("nomeplano")));
+                planos.add(new Plano(res.getInt("idplano"), res.getString("nomeplano"), res.getString("duracao"), res.getFloat("preco"), res.getInt("limitepessoas"), res.getString("flpromocao"), res.getInt("desconto")));
             }
         }
 
@@ -53,19 +53,29 @@ public class PlanoDAO {
     }
 
     public void insert(Plano plano) throws SQLException {
-        String query = "INSERT INTO plano (nomeplano) VALUES (?)";
+        String query = "INSERT INTO plano (nomeplano, duracao, preco, limitepessoas, flpromocao, desconto) VALUES (?, ?, ?, ?, ?, ?)";
         statement = connection.prepareStatement(query);
         statement.setString(1, plano.getNome()); //capturo através do meu getName
+        statement.setString(2, plano.getDuracao());
+        statement.setFloat(3, plano.getPreco());
+        statement.setInt(4, plano.getLimitepessoas());
+        statement.setString(5, plano.getFlpromocao());
+        statement.setInt(6, plano.getDesconto());
         statement.execute();
     }
 
-    public void update(Integer idPlanoOld, Plano planoNew) throws SQLException {
-        String query = "UPDATE plano SET nomeplano = ? WHERE idplano = ?";
+    public void update(Integer idPlanoOld, Plano plano) throws SQLException {
+        String query = "UPDATE plano SET nomeplano = ?, duracao = ?, preco = ?, limitepessoas = ?, flpromocao = ?, desconto = ? WHERE idplano = ?";
         statement = connection.prepareStatement(query);
 
         //seto meus valores
-        statement.setString(1, planoNew.getNome());
-        statement.setInt(2, idPlanoOld);
+        statement.setString(1, plano.getNome()); //capturo através do meu getName
+        statement.setString(2, plano.getDuracao());
+        statement.setFloat(3, plano.getPreco());
+        statement.setInt(4, plano.getLimitepessoas());
+        statement.setString(5, plano.getFlpromocao());
+        statement.setInt(6, plano.getDesconto());
+        statement.setInt(7, idPlanoOld);
         statement.execute();
     }
 

@@ -30,18 +30,13 @@
   <component name="ChangeListManager">
     <list default="true" id="42ebd21e-3ec2-4484-beae-29a7791e0446" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ModelsDAO/AparelhoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ModelsDAO/AparelhoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Controllers/AparelhoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Controllers/AparelhoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasAluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasAparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasAparelho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasInstrutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasInstrutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Models/Plano.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Models/Plano.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ModelsDAO/PlanoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ModelsDAO/PlanoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Controllers/PlanoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Controllers/PlanoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasPlano.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasPlano.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasTreino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modules/Routes/RotasTreino.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aluno/ViewAlterarAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aluno/ViewAlterarAluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aluno/ViewAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aluno/ViewAluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAlterarAparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAlterarAparelho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAparelho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Aparelho/ViewAparelho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Instrutor/ViewAlterarInstrutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Instrutor/ViewAlterarInstrutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Plano/ViewAdicionarPlano.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Plano/ViewAdicionarPlano.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Plano/ViewAlterarPlano.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Plano/ViewAlterarPlano.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Views/Plano/ViewPlano.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Views/Plano/ViewPlano.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,10 +135,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="491" y="105" width="374" height="591" key="#com.intellij.ide.util.MemberChooser" timestamp="1620841602063">
+    <state x="491" y="105" width="374" height="591" key="#com.intellij.ide.util.MemberChooser" timestamp="1621105317842">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="491" y="105" width="374" height="591" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1620841602063" />
+    <state x="491" y="105" width="374" height="591" key="#com.intellij.ide.util.MemberChooser/0.27.1366.741@0.27.1366.741" timestamp="1621105317842" />
     <state x="416" y="146" width="524" height="508" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1619578871820">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -152,22 +147,22 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="466" y="155" width="424" height="491" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1619137538750" />
-    <state width="1366" height="185" key="GridCell.Tab.0.bottom" timestamp="1621103856405">
+    <state width="1366" height="185" key="GridCell.Tab.0.bottom" timestamp="1621108741345">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1366" height="185" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1621103856405" />
-    <state width="1366" height="185" key="GridCell.Tab.0.center" timestamp="1621103856404">
+    <state width="1366" height="185" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1621108741344" />
+    <state width="1366" height="185" key="GridCell.Tab.0.center" timestamp="1621108741344">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1366" height="185" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1621103856404" />
-    <state width="1366" height="185" key="GridCell.Tab.0.left" timestamp="1621103856403">
+    <state width="1366" height="185" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1621108741344" />
+    <state width="1366" height="185" key="GridCell.Tab.0.left" timestamp="1621108741343">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1366" height="185" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1621103856403" />
-    <state width="1366" height="185" key="GridCell.Tab.0.right" timestamp="1621103856404">
+    <state width="1366" height="185" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1621108741343" />
+    <state width="1366" height="185" key="GridCell.Tab.0.right" timestamp="1621108741344">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state width="1366" height="185" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1621103856404" />
+    <state width="1366" height="185" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1621108741344" />
     <state width="1320" height="215" key="GridCell.Tab.1.bottom" timestamp="1620392372954">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
@@ -204,10 +199,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="0" y="27" width="618" height="741" key="find.popup/0.27.1366.741@0.27.1366.741" timestamp="1617070861232" />
-    <state x="347" y="174" key="run.anything.popup" timestamp="1621100622188">
+    <state x="347" y="174" key="run.anything.popup" timestamp="1621108059311">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1621100622188" />
+    <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1621108059311" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1620841637126">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

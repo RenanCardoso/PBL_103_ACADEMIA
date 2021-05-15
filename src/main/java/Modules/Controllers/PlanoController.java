@@ -25,7 +25,7 @@ public class PlanoController {
         modelo.setNumRows(0);
 
         for (Plano a : dao.findAll()) {
-            modelo.addRow(new Object[]{a.getId(), a.getNome()});
+            modelo.addRow(new Object[]{a.getId(), a.getNome(), a.getDuracao(), a.getPreco(), a.getLimitepessoas(), a.getFlpromocao(), a.getDesconto()});
         }
     }
 
@@ -36,19 +36,19 @@ public class PlanoController {
         return listaPlanos;
     }
 
-    public void adicionarPlano(String nome) throws SQLException {
+    public void adicionarPlano(String nomeplano, String duracao, Float preco, Integer limitepessoas, String flpromocao, Integer desconto) throws SQLException {
         //aqui faço a inserção
-        dao.insert(new Plano(nome));
+        dao.insert(new Plano(nomeplano, duracao, preco, limitepessoas, flpromocao, desconto));
         JOptionPane.showMessageDialog(null, "Plano adicionado com sucesso");
 //        System.out.println("Plano adicionado com sucesso");
     }
 
-    public void editarPlano(Integer idTreinoAntigo, String novoNomePlano) throws SQLException {
+    public void editarPlano(Integer idTreinoAntigo, String nomeplano, String duracao, Float preco, Integer limitepessoas, String flpromocao, Integer desconto) throws SQLException {
         /* o meu dao.update espera dois argumentos, o primeiro é o antigo dado(clienteExists)
          * e o segundo é o novo dado (uma instância nova)
          */
 
-        Plano novoPlano = new Plano(idTreinoAntigo, novoNomePlano); //criei a instância do objeto passando o nome que o usuário acabou de inserir
+        Plano novoPlano = new Plano(idTreinoAntigo, nomeplano, duracao, preco, limitepessoas, flpromocao, desconto); //criei a instância do objeto passando o nome que o usuário acabou de inserir
         dao.update(idTreinoAntigo, novoPlano);
         System.out.println("Plano alterado com sucesso");
     }
