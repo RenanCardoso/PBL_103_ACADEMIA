@@ -120,7 +120,7 @@ public class ViewAlterarInstrutor {
         frame.add(btnVoltarMenuUsuarios);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new RotasInstrutor(btnSalvar, comboinstrutor, frame, nome, cpf, rg, idade, numPrincipal, numSecundario, status, email)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasInstrutor(btnSalvar, indiceInstrutorSelecionado, frame, nome, cpf, rg, idade, numPrincipal, numSecundario, status, email)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasInstrutor(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuUsuarios.addActionListener(new RotasInstrutor(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 

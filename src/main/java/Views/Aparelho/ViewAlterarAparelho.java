@@ -1,7 +1,5 @@
 package Views.Aparelho;
 
-import Models.Aparelho;
-import Modules.Controllers.AlunoController;
 import Modules.Controllers.AparelhoController;
 import Modules.Routes.RotasAparelho;
 
@@ -153,6 +151,8 @@ public class ViewAlterarAparelho {
         }
 
         frame.add(panel);
+        frame.add(labelComboAparelho);
+        frame.add(comboaparelho);
         frame.add(labelNome);
         frame.add(nome);
         frame.add(labelDescricao);
@@ -184,7 +184,7 @@ public class ViewAlterarAparelho {
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, nome, categoria, descricao, colunaDePesoKG, composicao, pesoDoAparelho, alturaDoAparelho, pesoSuportado, larguraDoAparelho, comprimentoDoAparelho, obsAparelho, cor, status)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, indiceAparelhoSelecionado, frame, nome, categoria, descricao, colunaDePesoKG, composicao, pesoDoAparelho, alturaDoAparelho, pesoSuportado, larguraDoAparelho, comprimentoDoAparelho, obsAparelho, cor, status)); //a partir daqui a Controller passará a assumir
 //        btnSalvar.addActionListener(new RotasAparelho(btnSalvar, frame, nome, combobox)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAparelho(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuUsuarios.addActionListener(new RotasAparelho(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir

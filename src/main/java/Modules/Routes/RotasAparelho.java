@@ -44,11 +44,12 @@ public class RotasAparelho implements ActionListener {
     private JLabel labelStatus;
     private JComboBox status;
 
-    private JComboBox combobox = new JComboBox();
+    private JComboBox comboaaparelho = new JComboBox();
     AparelhoController aparelhoCon = new AparelhoController();
 
     private static String statusFormatado;
     private static String categoriaFormatado;
+    private static Integer indiceAparelhoSelecionado;
 
     //    construtor para voltar para tela principal de gerenciar aparelhos
     public RotasAparelho(JButton btnAcao, JFrame frame) {
@@ -78,18 +79,38 @@ public class RotasAparelho implements ActionListener {
     }
 
     //    construtor para editar aparelho
-    public RotasAparelho(JButton opcao, JFrame frame, JTextField txtNome, JComboBox combobox) {
+    public RotasAparelho(JButton opcao, Integer indiceAparelhoSelecionado, JFrame frame, JTextField nome, JComboBox categoria, JTextField descricao, JTextField colunaDePesoKG, JTextField composicao, JTextField pesoDoAparelho, JTextField alturaDoAparelho, JTextField pesoSuportado, JTextField larguraDoAparelho, JTextField comprimentoDoAparelho, JTextField obsAparelho, JTextField cor, JComboBox status) {
         this.btnOpcao = opcao;
-        this.combobox = combobox;
+        this.indiceAparelhoSelecionado = indiceAparelhoSelecionado;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.categoria = categoria;
+        this.colunaDePesoKG = colunaDePesoKG;
+        this.composicao = composicao;
+        this.pesoDoAparelho = pesoDoAparelho;
+        this.alturaDoAparelho = alturaDoAparelho;
+        this.pesoSuportado = pesoSuportado;
+        this.larguraDoAparelho = larguraDoAparelho;
+        this.comprimentoDoAparelho = comprimentoDoAparelho;
+        this.obsAparelho = obsAparelho;
+        this.cor = cor;
+        this.status = status;
+
+        frame.dispose();
+    }
+
+    public RotasAparelho(JButton opcao, JFrame frame, JTextField txtNome, JComboBox comboaaparelho) {
+        this.btnOpcao = opcao;
+        this.comboaaparelho = comboaaparelho;
         this.nome = txtNome;
 
         frame.dispose();
     }
 
-    //    construtor para remover aparelho
-    public RotasAparelho(JButton opcao, JFrame frame, JComboBox combobox) {
+    //    construtor para alterar e remover aparelho
+    public RotasAparelho(JButton opcao, JFrame frame, JComboBox comboaaparelho) {
         this.btnOpcao = opcao;
-        this.combobox = combobox;
+        this.comboaaparelho = comboaaparelho;
 
         frame.dispose();
     }
@@ -124,8 +145,6 @@ public class RotasAparelho implements ActionListener {
                     int pesosuportado = Integer.parseInt(pesoSuportado.getText());
 
                     categoriaFormatado = categoria.getSelectedItem().toString();
-                    JOptionPane.showMessageDialog(null, "Cat antes" + categoriaFormatado);
-
                     switch (categoriaFormatado) {
 
                         case "Aparelho de Musculação":
@@ -185,23 +204,67 @@ public class RotasAparelho implements ActionListener {
                 break;
             case "verTelaAlterarAparelho":
                 try {
-                    new ViewAlterarAparelho();
+                    new ViewAlterarAparelho(comboaaparelho.getSelectedIndex());
                 } catch (SQLException | ParseException throwables) {
                     throwables.printStackTrace();
                 }
                 break;
             case "alterarAparelho":
                 try {
-                    Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
-                    Integer idAparelhoSelecionado = null;
 
-                    for (int i = 0; i < aparelhoCon.listarAparelhos().size(); i++) {
-                        if (indiceComboboxSelecionado == i) {
-                            idAparelhoSelecionado = aparelhoCon.listarAparelhos().get(i).getId();
-                        }
+                    int colunadepesokg = Integer.parseInt(colunaDePesoKG.getText());
+                    int pesodoaparelho = Integer.parseInt(pesoDoAparelho.getText());
+                    int pesosuportado = Integer.parseInt(pesoSuportado.getText());
+
+                    categoriaFormatado = categoria.getSelectedItem().toString();
+
+                    switch (categoriaFormatado) {
+
+                        case "Aparelho de Musculação":
+                            categoriaFormatado = "apmu";
+                            break;
+                        case "Abdominal":
+                            categoriaFormatado = "abdo";
+                            break;
+                        case "Anilhas":
+                            categoriaFormatado = "anil";
+                            break;
+                        case "Acessórios":
+                            categoriaFormatado = "aces";
+                            break;
+                        case "Aeróbico":
+                            categoriaFormatado = "aero";
+                            break;
+                        case "Banco Supino":
+                            categoriaFormatado = "basu";
+                            break;
+                        case "Barras":
+                            categoriaFormatado = "barr";
+                            break;
+                        case "Esporte Lazer":
+                            categoriaFormatado = "esla";
+                            break;
+                        case "Kits Barras e Anilhas":
+                            categoriaFormatado = "kban";
+                            break;
+                        case "Peças de Reposição":
+                            categoriaFormatado = "pero";
+                            break;
+                        case "Puxadores":
+                            categoriaFormatado = "puxa";
+                            break;
+                        default:
                     }
 
-                    aparelhoCon.editarAparelho(idAparelhoSelecionado, nome.getText());
+                    statusFormatado = status.getSelectedItem().toString();
+
+                    if (statusFormatado == "Ativo"){
+                        statusFormatado = "ati";
+                    } else {
+                        statusFormatado = "ina";
+                    }
+
+                    aparelhoCon.editarAparelho(aparelhoCon.listarAparelhos().get(indiceAparelhoSelecionado).getId(), nome.getText(), categoriaFormatado, descricao.getText(), colunadepesokg, composicao.getText(), pesodoaparelho, alturaDoAparelho.getText(), pesosuportado, larguraDoAparelho.getText(), comprimentoDoAparelho.getText(), cor.getText(), obsAparelho.getText(), statusFormatado);
                     JOptionPane.showMessageDialog(null, "Aparelho alterado com sucesso");
 
                     new ViewAparelho();
@@ -220,7 +283,7 @@ public class RotasAparelho implements ActionListener {
                 try {
                     if (aparelhoCon.listarAparelhos().size() > 0) {
                         try {
-                            Integer indiceComboboxSelecionado = this.combobox.getSelectedIndex();
+                            Integer indiceComboboxSelecionado = this.comboaaparelho.getSelectedIndex();
                             Integer idAparelhoSelecionado = null;
 
                             for (int i = 0; i < aparelhoCon.listarAparelhos().size(); i++) {
@@ -229,10 +292,10 @@ public class RotasAparelho implements ActionListener {
                                 }
                             }
 
-                            String nomeTemp = this.combobox.getSelectedItem().toString();
+                            String nomeTemp = this.comboaaparelho.getSelectedItem().toString();
                             aparelhoCon.removerAparelho(idAparelhoSelecionado);
                             JOptionPane.showMessageDialog(null, "Aparelho " + nomeTemp + " removido com sucesso!");
-                            new ViewRemoverAparelho();
+                            new ViewAparelho();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }

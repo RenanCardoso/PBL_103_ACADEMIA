@@ -19,6 +19,8 @@ public class ViewAparelho {
     private static JButton btnRemover;
     private static JButton btnAcao;
     private static JTable tabela;
+    private static JComboBox comboaparelho;
+    private static JLabel labelComboAparelho;
     private static DefaultTableModel modelo = new DefaultTableModel();
 
     public ViewAparelho() throws SQLException {
@@ -38,21 +40,63 @@ public class ViewAparelho {
         panel.setLayout(new FlowLayout());
 
         AparelhoController aparelho = new AparelhoController();
+        labelComboAparelho = new JLabel("Selecione o Aparelho *");
+        comboaparelho = new JComboBox();
+        for (int i = 0; i < aparelho.listarAparelhos().size(); i++){
+            comboaparelho.addItem(aparelho.listarAparelhos().get(i).getNome());
+        }
 
         tabela = new JTable(modelo);
         if (modelo.getColumnCount() <= 0) {
             modelo.addColumn("Id");
             modelo.addColumn("Nome");
+            modelo.addColumn("Categoria");
+            modelo.addColumn("Descrição");
+            modelo.addColumn("Coluna de peso (KG)");
+            modelo.addColumn("Composição");
+            modelo.addColumn("Peso do Aparelho");
+            modelo.addColumn("Peso Suportado");
+            modelo.addColumn("Altura do Aparelho");
+            modelo.addColumn("Largura do Aparelho");
+            modelo.addColumn("Comprimento do Aparelho");
+            modelo.addColumn("Cor do Aparelho");
+            modelo.addColumn("Observação do Aparelho");
+            modelo.addColumn("Status");
         }
-        tabela.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
-        tabela.getColumnModel().getColumn(1).setPreferredWidth(80);
-        tabela.getColumnModel().getColumn(1).setPreferredWidth(120);
+
+        tabela.setLayout(new GridBagLayout());
+        tabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabela.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tabela.getColumnModel().getColumn(1).setPreferredWidth(250);
+        tabela.getColumnModel().getColumn(2).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(7).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(8).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(9).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(10).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(11).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(12).setPreferredWidth(100);
+        tabela.getColumnModel().getColumn(13).setPreferredWidth(100);
 
         DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
         centralizado.setHorizontalAlignment(SwingConstants.CENTER);
         tabela.getColumnModel().getColumn(0).setCellRenderer(centralizado);
         tabela.getColumnModel().getColumn(1).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(2).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(3).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(4).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(5).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(6).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(7).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(8).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(9).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(10).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(11).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(12).setCellRenderer(centralizado);
+        tabela.getColumnModel().getColumn(13).setCellRenderer(centralizado);
 
         aparelho.listarAparelhosComTabela(modelo);
 
@@ -71,13 +115,15 @@ public class ViewAparelho {
 
         frame.add(panel);
         frame.add(btnAdicionar);
+        frame.add(labelComboAparelho);
+        frame.add(comboaparelho);
         frame.add(btnAlterar);
         frame.add(btnRemover);
         frame.add(btnAcao);
 
 //        aqui vou trabalhar com meus eventos
         btnAdicionar.addActionListener(new RotasAparelho(btnAdicionar, frame)); //a partir daqui a Controller passará a assumir
-        btnAlterar.addActionListener(new RotasAparelho(btnAlterar, frame)); //a partir daqui a Controller passará a assumir
+        btnAlterar.addActionListener(new RotasAparelho(btnAlterar, frame, comboaparelho)); //a partir daqui a Controller passará a assumir
         btnRemover.addActionListener(new RotasAparelho(btnRemover, frame)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAparelho(btnAcao, frame)); //a partir daqui a Controller passará a assumir
 

@@ -36,6 +36,7 @@ public class RotasAluno implements ActionListener {
     private JButton btnOpcao;
 
     private static String cpfFormatado;
+    private static Integer indiceAlunoSelecionado;
     private static String numPrincipalFormatado;
     private static String numSecundarioFormatado;
     private static String statusFormatado;
@@ -72,10 +73,10 @@ public class RotasAluno implements ActionListener {
     }
 
     //    construtor para editar aluno
-    public RotasAluno(JButton btnSalvar, JComboBox aluno, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JTextField numSecundario, JComboBox status, JComboBox plano, JComboBox instrutor, JComboBox fichaTreino, JTextField email, JTextField altura, JTextField peso) {
+    public RotasAluno(JButton btnSalvar, Integer indiceAlunoSelecionado, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JTextField numSecundario, JComboBox status, JComboBox plano, JComboBox instrutor, JComboBox fichaTreino, JTextField email, JTextField altura, JTextField peso) {
 
         this.btnOpcao = btnSalvar;
-        this.comboaluno = aluno;
+        this.indiceAlunoSelecionado = indiceAlunoSelecionado;
         this.comboinstrutor = instrutor;
         this.comboplano = plano;
         this.combofichatreino = fichaTreino;
@@ -171,7 +172,7 @@ public class RotasAluno implements ActionListener {
                         statusFormatado = "ina";
                     }
 
-                    alunoCon.editarAluno(alunoCon.listarAlunos().get(comboaluno.getSelectedIndex()).getId(), txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, idPlanoSelecionado, idInstrutorSelecionado, idTreinoSelecionado, txtemail.getText(), txtaltura.getText(), txtpeso.getText(), statusFormatado);
+                    alunoCon.editarAluno(alunoCon.listarAlunos().get(indiceAlunoSelecionado).getId(), txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, idPlanoSelecionado, idInstrutorSelecionado, idTreinoSelecionado, txtemail.getText(), txtaltura.getText(), txtpeso.getText(), statusFormatado);
 
                     JOptionPane.showMessageDialog(null, "Aluno alterado com sucesso");
                     new ViewAluno();
@@ -202,7 +203,7 @@ public class RotasAluno implements ActionListener {
                             String nomeTemp = this.comboaluno.getSelectedItem().toString();
                             alunoCon.removerAluno(idAlunoSelecionado);
                             JOptionPane.showMessageDialog(null, "Aluno " + nomeTemp + " removido com sucesso!");
-                            new ViewRemoverAluno();
+                            new ViewAluno();
                         } catch (SQLException throwables) {
                             JOptionPane.showMessageDialog(null, "Houve um erro ao tentar fazer a remoção.");
                             throwables.printStackTrace();

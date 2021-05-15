@@ -143,7 +143,7 @@ public class RotasPlano implements ActionListener {
                             String nomeTemp = this.combobox.getSelectedItem().toString();
                             planoCon.removerPlano(idPlanoSelecionado);
                             JOptionPane.showMessageDialog(null, "Plano " + nomeTemp + " removido com sucesso!");
-                            new ViewRemoverPlano();
+                            new ViewPlano();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }

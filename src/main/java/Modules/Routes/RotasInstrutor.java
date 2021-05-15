@@ -33,6 +33,7 @@ public class RotasInstrutor implements ActionListener {
     private static String numPrincipalFormatado;
     private static String numSecundarioFormatado;
     private static String statusFormatado;
+    private static Integer indiceInstrutorSelecionado;
 
     InstrutorController instrutorCon = new InstrutorController();
 
@@ -55,16 +56,15 @@ public class RotasInstrutor implements ActionListener {
         this.txtnumPrincipal = numPrincipal;
         this.txtnumSecundario = numSecundario;
         this.combostatus = status;
-        frame.dispose();
 
         frame.dispose();
     }
 
     //    construtor para editar instrutor
-    public RotasInstrutor (JButton btnSalvar, JComboBox instrutor, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JTextField numSecundario, JComboBox status, JTextField email) {
+    public RotasInstrutor (JButton btnSalvar, Integer indiceInstrutorSelecionado, JFrame frame, JTextField nome, JTextField cpf, JTextField rg, JTextField idade, JTextField numPrincipal, JTextField numSecundario, JComboBox status, JTextField email) {
 
         this.btnOpcao = btnSalvar;
-        this.comboinstrutor = instrutor;
+        this.indiceInstrutorSelecionado = indiceInstrutorSelecionado;
         this.txtnome = nome;
         this.txtemail = email;
         this.txtcpf = cpf;
@@ -156,7 +156,7 @@ public class RotasInstrutor implements ActionListener {
                         }
 
                         JOptionPane.showMessageDialog(null, "Instrutor alterado com sucesso");
-                        instrutorCon.editarInstrutor(comboinstrutor.getSelectedIndex(), txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, statusFormatado, txtemail.getText());
+                        instrutorCon.editarInstrutor(instrutorCon.listarInstrutores().get(indiceInstrutorSelecionado).getId(), txtnome.getText(), cpfFormatado, txtrg.getText(), idade, numPrincipalFormatado, numSecundarioFormatado, statusFormatado, txtemail.getText());
 
                         new ViewInstrutores();
                     } catch (SQLException throwables) {
@@ -186,7 +186,7 @@ public class RotasInstrutor implements ActionListener {
                             String nomeTemp = this.combobox.getSelectedItem().toString();
                             instrutorCon.removerInstrutor(idAInstrutorSelecionado);
                             JOptionPane.showMessageDialog(null, "Instrutor " + nomeTemp + " removido com sucesso!");
-                            new ViewRemoverInstrutor();
+                            new ViewInstrutores();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }

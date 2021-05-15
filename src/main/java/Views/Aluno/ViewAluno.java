@@ -40,7 +40,6 @@ public class ViewAluno {
         panel.setLayout(new GridBagLayout());
 
         AlunoController aluno = new AlunoController();
-
         labelComboAluno = new JLabel("Selecione o Aluno *");
         comboaluno = new JComboBox();
         for (int i = 0; i < aluno.listarAlunos().size(); i++){

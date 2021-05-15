@@ -172,7 +172,7 @@ public class ViewAlterarAluno {
         frame.add(btnVoltarMenuUsuarios);
 
 //        aqui vou trabalhar com meus eventos
-        btnSalvar.addActionListener(new RotasAluno(btnSalvar, comboaluno, frame, nome, cpf, rg, idade, numPrincipal, numSecundario, status, plano, instrutor, fichaTreino, email, altura, peso)); //a partir daqui a Controller passará a assumir
+        btnSalvar.addActionListener(new RotasAluno(btnSalvar, indiceAlunoSelecionado, frame, nome, cpf, rg, idade, numPrincipal, numSecundario, status, plano, instrutor, fichaTreino, email, altura, peso)); //a partir daqui a Controller passará a assumir
         btnAcao.addActionListener(new RotasAluno(btnAcao, frame)); //a partir daqui a Controller passará a assumir
         btnVoltarMenuUsuarios.addActionListener(new RotasAluno(btnVoltarMenuUsuarios, frame)); //a partir daqui a Controller passará a assumir
 

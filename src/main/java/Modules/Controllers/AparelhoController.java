@@ -25,7 +25,7 @@ public class AparelhoController {
         modelo.setNumRows(0);
 
         for (Aparelho a : dao.findAll()) {
-            modelo.addRow(new Object[]{a.getId(), a.getNome()});
+            modelo.addRow(new Object[]{a.getId(), a.getNome(), a.getCategoria(), a.getDescricao(), a.getColunadepesokg(), a.getComposicao(), a.getPesodoaparelho(), a.getPesosuportado(), a.getAlturadoaparelho(), a.getLarguradoaparelho(), a.getComprimentoaparelho(), a.getCor(), a.getObsaparelho(), a.getStatus()});
         }
     }
 
@@ -43,12 +43,12 @@ public class AparelhoController {
 //        System.out.println("Aparelho adicionado com sucesso");
     }
 
-    public void editarAparelho(Integer aparelhoAntigo, String novoNomeAparelho) throws SQLException {
+    public void editarAparelho(Integer aparelhoAntigo, String nomeaparelho, String categoria, String descricao, Integer colunadepesokg, String composicao, Integer pesodoaparelho, String alturadoaparelho, Integer pesosuportado, String larguradoaparelho, String comprimentoaparelho, String cor, String obsaparelho, String status) throws SQLException {
         /* o meu dao.update espera dois argumentos, o primeiro é o antigo dado(clienteExists)
          * e o segundo é o novo dado (uma instância nova)
          */
 
-        Aparelho novoAparelho = new Aparelho(aparelhoAntigo, novoNomeAparelho); //criei a instância do objeto passando o nome que o usuário acabou de inserir
+        Aparelho novoAparelho = new Aparelho(aparelhoAntigo, nomeaparelho, categoria, descricao, colunadepesokg, composicao, pesodoaparelho, pesosuportado, alturadoaparelho, larguradoaparelho, comprimentoaparelho, cor, obsaparelho, status); //criei a instância do objeto passando o nome que o usuário acabou de inserir
         dao.update(aparelhoAntigo, novoAparelho);
         System.out.println("Aparelho alterado com sucesso");
     }

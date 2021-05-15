@@ -60,7 +60,7 @@ public class AparelhoDAO {
              * pra percorrer essa lista e posso adicionar dentro da minha lista aparelhos
              */
             while (res.next()) {
-                aparelhos.add(new Aparelho(res.getInt("idaparelho"), res.getString("nomeaparelho")));
+                aparelhos.add(new Aparelho(res.getInt("idaparelho"), res.getString("nomeaparelho"), res.getString("categoria"), res.getString("descricao"), res.getInt("colunadepesokg"), res.getString("composicao"), res.getInt("pesoaparelho"), res.getInt("pesosuportado"), res.getString("alturaaparelho"), res.getString("larguraaparelho"), res.getString("comprimentoaparelho"), res.getString("cor"), res.getString("obsaparelho"), res.getString("status")));
             }
         }
 

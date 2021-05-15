@@ -141,7 +141,7 @@ public class RotasTreino implements ActionListener {
                             String nomeTemp = this.combobox.getSelectedItem().toString();
                             treinoCon.removerTreino(idTreinoSelecionado);
                             JOptionPane.showMessageDialog(null, "Treino " + nomeTemp + " removido com sucesso!");
-                            new ViewRemoverTreino();
+                            new ViewTreino();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         }
